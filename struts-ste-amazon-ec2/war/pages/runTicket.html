@@ -1,0 +1,360 @@
+<!--<html manifest="mc.appcache">-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+    <meta name='viewport' content='width=device-width'/>
+    <meta name='format-detection' content='telephone=no'/>
+
+    <link rel="stylesheet" href="scripts/jquery.mobile-1.0.min.css"/>
+    <script src="scripts/jquery-1.6.4.min.js"></script>
+    <script src="scripts/jquery.mobile-1.0.min.js"></script>
+    <script src="scripts/mcScripts.js"></script>
+    <link rel='stylesheet' type='text/css' href='common/soa-mobile.css'/>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#spinner').bind("ajaxSend", function () {
+                $(this).show();
+            });
+            setTimeout('refreshData()', 1000);
+
+            $("#btnShowSimple").click(function (e) {
+                document.getElementById("checkbox-1").value = '';
+                ShowDialog(false);
+                e.preventDefault();
+            });
+
+            $("#btnShowModal").click(function (e) {
+                document.getElementById("checkbox-1").value = '';
+                ShowDialog(true);
+                e.preventDefault();
+            });
+
+            $("#btnClose").click(function (e) {
+                HideDialog();
+                e.preventDefault();
+            });
+
+            $("#btnSubmit").click(function (e) {
+                Save();
+                HideDialog();
+                e.preventDefault();
+            });
+
+            //   heartBeat();
+
+        });
+
+        function heartBeat() {
+            //getFrequentUpdates();
+            //setTimeout('heartBeat()', 150000);
+        }
+
+        function ShowDialog(modal) {
+            $("#comment-1").val("");
+            $('#checkbox-1').val("");
+            document.getElementById("checkbox-1").value = '';
+            $("#overlay").show();
+            $("#dialog").fadeIn(300);
+            ShowSelectedRecords();
+            if (modal) {
+                $("#overlay").unbind("click");
+            }
+            else {
+                $("#overlay").click(function (e) {
+                    HideDialog();
+                });
+            }
+        }
+
+        function ShowSelectedRecords() {
+            len = 0;
+            html5mc.webdb.open();
+            html5mc.webdb.db.transaction(function (tx) {
+                tx.executeSql("SELECT * FROM workorders WHERE status = '5'", [], function (tx, results) {
+                    len = results.rows.length;
+                    $("#msgid").html("You have selected " + len + " records.");
+                    resultsSet = results;
+                });
+            });
+        }
+
+        function Save() {
+            var text = $('textarea#comment-1').val();
+            if ($('#checkbox-1').is(':checked') && text != "") {
+                html5mc.webdb.open();
+                html5mc.webdb.db.transaction(function (tx) {
+                    len = resultsSet.rows.length;
+                    var text = $('textarea#comment-1').val();
+                    for (i = 0; i < resultsSet.rows.length; i++) {
+                        var wo_num = resultsSet.rows.item(i).WO_NUM;
+                        html5mc.webdb.UpdateWOCommentStatus(text, wo_num);
+                    }
+                });
+
+            }
+            else if (!($('#checkbox-1').is(':checked')) && text != null) {
+                html5mc.webdb.open();
+                html5mc.webdb.db.transaction(function (tx) {
+                    len = resultsSet.rows.length;
+                    for (i = 0; i < resultsSet.rows.length; i++) {
+                        var wo_num = resultsSet.rows.item(i).WO_NUM;
+                        html5mc.webdb.UpdateWOComment(text, wo_num);
+                    }
+                });
+            } else if (($('#checkbox-1').is(':checked')) && (text == null || text == "")) {
+                window.alert('Please add a comment');
+                return;
+
+            }
+            setTimeout('ReloadSearch()', 500);
+            HideDialog();
+        }
+
+        function HideDialog() {
+            $('#checkbox-1').removeAttr('checked');
+            $("#overlay").hide();
+            $("#dialog").fadeOut(300);
+
+        }
+
+    </script>
+
+</head>
+<body>
+
+<div id="overlay" class="web_dialog_overlay"></div>
+
+<div id="dialog" class="web_dialog">
+    <div style="padding-top:2% ; padding-left:  4%" id="msgid"></div>
+
+    <div style="padding-left: 25%;width: 70%;padding-top: 3%">
+        <a onclick="Save();" style="width: 35%" data-role="button" data-inline="true">Save</a>
+        <a onclick="HideDialog();" style="width: 35%" data-role="button" data-inline="true">Cancel</a>
+    </div>
+
+    <div style="padding-top: 5%" data-role="fieldcontain">
+        <label style="padding-left: 4%; vertical-align:top;">Comments :</label>
+        <textarea style="width: 70%;height: 30%;" cols="50" rows="10" name="textarea" id="comment-1"></textarea>
+    </div>
+
+    <div style="padding-left: 25%;width: 55%; ">
+
+        <input value="" style="width: 55%;padding-left: 5%;" type="checkbox" name="checkbox-1" id="checkbox-1"
+               class="custom" onclick=""/>
+        <label for="checkbox-1">Add to Exceptions</label>
+
+    </div>
+</div>
+
+
+<div>
+    <div data-role="header" data-position="inline">
+        <h1><span class="ui-btn-left"><img id="spinner"
+                                           src="images/hess.png"/>  Crude Oil Mobile Portal</span><span></span> <span
+                id="username" class="ui-username-right"></span><span class="column-space">&nbsp; </span><span
+                id="userRoad" class="ui-userRoad-right"></span></h1>
+        <span class="ui-shiplogo-right"> <img id="spinner" src="images/shipx.png"/>    </span>
+        <a onclick="logOut();" class="ui-btn-right">Logout</a>
+    </div>
+    <div data-role="content">
+        <div data-inline="true" class="tab-nav-c" style="vertical-align: center;font-size: 12px;">
+            <a data-inline="true" id="workOrdtab" onclick="unloadInvTab();" data-role="button" class="btnPos0" href="">Run
+                Ticket</a>
+            <!--                    <a data-inline="true" onclick="loadInventory();" data-role="button" class="btnPos1" href="">Search</a> -->
+        </div>
+
+        <div id="buttnset">
+            <!--        <fieldset id="searchCri" class="ui-grid-b">
+             <div id ="subdiv1" class="ui-block-a" align="CENTER">
+                 <select id="woSelect" name="woSelect" data-theme="c"><option>Work Order</option></select>
+
+             </div>
+
+             <div id ="subdiv2" class="ui-block-b" data-theme="b" align="CENTER">
+                 <select id="woStations"  name="woStations" data-theme="c" ><option>Station</option></select>
+             </div>
+             <div id ="subdiv3" class="ui-block-c">
+              <input type="submit" name="search" id="btnSrch" value="Search"/>
+             </div>
+         </fieldset>   -->
+        </div>
+        <div id="msg"></div>
+        <div id="navigation"></div>
+        <div id="ticketDiv">
+            <div id="webPortalHeadings" class="ui-column-header-c" style="vertical-align: center;font-size: 14px;">
+                <span class="column-Maccept">Accept</span><span class="column-Mreject">Reject</span><span
+                    class="column-Mticket">Ticket</span><span class="column-Mdate">Date</span><span
+                    class="column-MopName">Operator</span><span
+                    class="column-MleaseName">Lease Name</span><span
+                    class="column-Mstatus">Status</span>
+                <span class="column-Mcomment">Comments</span>
+            </div>
+            <div id="woDetaillist" class="match-list">
+                <ul id="jobtbl" data-divider-theme="c" data-theme="c" data-inset="true" data-role="listview">
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var comment;
+    var comment2;
+    var syncDisable = 'true';
+
+    function refreshData() {
+        $("#jobtbl").empty();
+        // alert('runtick');
+        //        if (getCookie("loginCookie")=='true'){
+        $.ajax({
+            url:'\\iethanol\\mobile\\crudeOilTenderSupport!fetchCrudeOilListForUser.action',
+            cache:false,
+            success:function (data) {
+                //            if (checkLogin(data.userlogin)){
+                //   $('#username').text(data.logedUser+' of ') ;
+                // $('#userRoad').text(' '+data.userRoad) ;
+                $.each(data.list, function (i, line) {
+                    comment = '';
+                    comment2 = '';
+                    if (comment != null) {
+
+                    }
+                    if (line.status == 'P') {
+                        $('#jobtbl').append("<li style=\"vertical-align: center;font-size: 14px;\" class=\"ui-column-header-c\" id= " + line.ticketNo + "><span  class=\"column-Maccept\"><img style=\"vertical-align: center;align: center;\" src=\"images\\accept.png\" onclick=\"accept(event, " + line.id + ");\" ></span><span  class=\"column-Mreject\" ><img style=\"vertical-align: center;align: center;\" src=\"images\\reject.png\" onclick=\"reject(event, " + line.id + ");\"  ></span><span style=\"border-bottom: 4px double; color: #000000;font-weight: bold;\" onclick=\"selectTicket(event, " + line.ticketNo + ");\" class=\"column-Mticket\">" + line.ticketNo + "</span><span  class=\"column-Mdate\">" + line.date + "</span><span class=\"column-MopName\">" + line.operatorName + "</span><span class=\"column-MleaseName\">" + line.leaseName + "</span><span class=\"column-Mstatus\">" + line.status + "</span><span class=\"column-Mcomment\">" + comment + "</span></li>");
+                    } else if (line.status == 'A') {
+                        $('#jobtbl').append("<li style=\"vertical-align: center;font-size: 14px;\" class=\"ui-column-header-c\" id= " + line.ticketNo + "><span class=\"column-Maccept\"><img style=\"vertical-align: center;align: center;\" src=\"images\\accept.png\"></span><span class=\"column-Mreject\" ></span><span style=\"border-bottom: 4px double; color: #000000;font-weight: bold;\" onclick=\"selectTicket(event, " + line.ticketNo + ");\" class=\"column-Mticket\">" + line.ticketNo + "</span><span  class=\"column-Mdate\">" + line.date + "</span><span class=\"column-MopName\">" + line.operatorName + "</span><span class=\"column-MleaseName\">" + line.leaseName + "</span><span class=\"column-Mstatus\">" + line.status + "</span><span  class=\"column-Mcomment\">" + comment + "</span></li>");
+                    } else if (line.status == 'R') {
+                        $('#jobtbl').append("<li style=\"vertical-align: center;font-size: 14px;\" class=\"ui-column-header-c\" id= " + line.ticketNo + "><span class=\"column-Maccept\"></span><span class=\"column-Mreject\" ><img style=\"vertical-align: center;align: center;\" src=\"images\\reject.png\"></span><span style=\"border-bottom: 4px double; color: #000000; font-weight: bold;\" onclick=\"selectTicket(event, " + line.ticketNo + ");\" class=\"column-Mticket\">" + line.ticketNo + "</span><span  class=\"column-Mdate\">" + line.date + "</span><span class=\"column-MopName\">" + line.operatorName + "</span><span class=\"column-MleaseName\">" + line.leaseName + "</span><span class=\"column-Mstatus\">" + line.status + "</span><span  class=\"column-Mcomment\">" + comment + "</span></li>");
+                    }
+                });
+                //          }
+
+            }
+        });
+        //     }else{
+        //           $(location).attr('href','login.html');
+        //     }
+    }
+
+    function selectYN(i) {
+        val = document.getElementById('selected[' + i + ']').value;
+        val = (val == 'Y') ? 'N' : 'Y';
+        document.getElementById('selected[' + i + ']').value = val;
+        document.getElementById('chkYN[' + i + ']').text = val;
+        return false;
+    }
+
+    var html5mc = {};
+    html5mc.webdb = {};
+    html5mc.webdb.db = null;
+    var currPage = 0;
+    var lastSelectedRow = 0;
+
+    var resultsSet = {};
+    var resultsSet1 = {};
+
+    $('#btnSrch').click(function () {
+        html5mc.webdb.getSearchWorkOrders($("#woSelect").val(), $("#woStations").val(), loadSearch);
+
+    });
+
+    function fakeFun() {
+        for (var x = 0; x < 500; x++) {
+        }
+    }
+
+    function selectNode(event, nodeHtmlEl) {
+        $("#Dropdown option:selected").text();
+        if ($.browser.msie) {
+            window.event.cancelBubble = true;
+        }
+        if (event.stopPropagation) {
+            event.stopPropagation();
+        }
+        //  alert("selectNode ID: " + $(nodeHtmlEl).attr("id"));
+        var tickerRow = "#" + $(nodeHtmlEl).attr("id");
+
+        $(tickerRow).css("background", "#7A5DC7");
+        $(tickerRow).css("color", "white");
+
+    }
+
+    function selectComment(event, vcomment) {
+        alert("Comment: " + vcomment);
+    }
+
+    function selectTicket(event, id) {
+        var tickerRow = "#" + id;
+//                $(tickerRow).css("background","#7A5DC7");
+//                $(tickerRow).css("color","white");
+        $(location).attr('href', 'detailRunTicket.html?id=' + id);
+    }
+
+    function accept(event, id) {
+        var acceptRow = id;
+        //alert('id is '+ acceptRow);
+        var url = "crudeOilTenderSupport!saveAcceptRejectTender.action?id=" + acceptRow + "&status=" + "A";
+        $.post(url,
+                function () {
+                    $(tickerRow).css("background", "#7A5DC7");
+                    $(tickerRow).css("color", "white");
+                }
+        );
+        //$(location).attr('href', 'runTicket.html');
+        setTimeout('refreshRunTicket()', 2000);
+    }
+
+    function reject(event, id) {
+        var rejectRow = id;
+        var url = "crudeOilTenderSupport!saveAcceptRejectTender.action?id=" + rejectRow + "&status=" + "R";
+        $.post(url,
+                function () {
+                    $(tickerRow).css("background", "#C11B17");
+                    $(tickerRow).css("color", "white");
+                }
+        );
+//                $(location).attr('href', 'runTicket.html');
+        setTimeout('refreshRunTicket()', 2000);
+    }
+    var syncDatalist = {};
+
+    function checkLogin(login) {
+        if (login == false) {
+            $(location).attr('href', 'login.html');
+            return false;
+        } else {
+            // $.cookie("loginCookie", "true");
+            return true;
+        }
+    }
+
+    function logOut() {
+        $.getJSON("user/LoginSupport!logoff.action", {},
+                function (data1) {
+                    delCookie("loginCookie");
+                    $(location).attr('href', 'login.html');
+                }
+        );
+    }
+
+    function syncdata(tx1, rs1) {
+
+        for (var i = 0; i < rs1.rows.length; i++) {
+            // syncDatalist[i]= rs1.rows.item(i).WO_NUM + ":" + rs1.rows.item(i).STATUS  + ":" + rs1.rows.item(i).WO_COMMENTS;
+        }
+    }
+
+    function refreshRunTicket() {
+        $(location).attr('href', 'runTicket.html');
+    }
+    function unloadInvTab() {
+
+    }
+
+
+</script>
+</body>
+</html>

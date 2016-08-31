@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+    <definition name="baseLayout" template="/pages/common/baseLayout.jsp">
+        <put-attribute name="bodyclass"  value="homepage"/>
+        <put-attribute name="title"  value="Default Title"/>
+        <put-attribute name="header" value="/pages/common/header.jsp"/>
+        <put-attribute name="navi"   value="/pages/common/navi.jsp"/>
+        <put-attribute name="sub-header"   value=""/>
+        <put-attribute name="slidecontainer"   value=""/>
+        <put-attribute name="sidebar"   value="/pages/common/sidebar.jsp"/>
+        <put-attribute name="body-content"   value="/pages/common/body.jsp"/>
+        <put-attribute name="footer"   value="/pages/common/footer.jsp"/>
+        <put-attribute name="head-scripts"   value=""/>
+    </definition>
+
+    <definition name="home" extends="baseLayout">
+        <put-attribute name="bodyclass"  value="homepage"/>
+        <put-attribute name="title"  value="CSE Watch - Colombo Stock Exchange Charts"/>
+        <put-attribute name="slidecontainer"   value="/pages/common/slidecontainer.jsp"/>
+        <put-attribute name="sidebar"   value=""/>
+        <put-attribute name="sub-header"   value=""/>
+        <put-attribute name="body-content"   value="/pages/home/home.jsp"/>
+        <put-attribute name="head-scripts"   value="/pages/home/headscripts.jsp"/>
+    </definition>
+
+    <definition name="commodity" extends="baseLayout">
+        <put-attribute name="bodyclass"  value="noheader"/>
+        <put-attribute name="title"  value="Colombo Rubber Traders' Association Rubber Prices"/>
+        <put-attribute name="sidebar"   value=""/>
+        <put-attribute name="body-content" value="/pages/commodity/commodity.jsp"/>
+    </definition>
+
+    <definition name="gold" extends="baseLayout">
+        <put-attribute name="bodyclass"  value="noheader"/>
+        <put-attribute name="title"  value="Gold Prices of Sri Lanka"/>
+        <put-attribute name="sidebar"   value=""/>
+        <put-attribute name="body-content" value="/pages/gold/gold.jsp"/>
+    </definition>
+
+    <definition name="commodityDefault" extends="baseLayout">
+        <put-attribute name="bodyclass"  value="noheader"/>
+        <put-attribute name="title"  value="Commodity Gold Charts"/>
+        <put-attribute name="body-content" value="/pages/commodity/commodity-chart-default.jsp"/>
+    </definition>
+
+    <definition name="daychart" extends="baseLayout">
+        <put-attribute name="bodyclass"  value=""/>
+        <put-attribute  name="sub-header"   value="/pages/daychart/sub-header-rt.jsp"/>
+        <put-attribute name="title"  value="Realtime Stock Charts"/>
+        <put-attribute name="body-content" value="/pages/daychart/daychart.jsp"/>
+        <put-attribute name="sidebar"   value="/pages/common/sidebar-short.jsp"/>
+    </definition>
+
+    <definition name="realtimechart" extends="baseLayout">
+        <put-attribute name="bodyclass"  value=""/>
+        <put-attribute  name="sub-header"   value="/pages/realtime/sub-header-rt.jsp"/>
+        <put-attribute name="title"  value="Realtime Stock Charts"/>
+        <put-attribute name="body-content" value="/pages/realtime/realtime-chart.jsp"/>
+        <put-attribute name="sidebar"   value="/pages/common/sidebar-short.jsp"/>
+    </definition>
+
+    <definition name="realtimeDefault" extends="baseLayout">
+        <put-attribute name="bodyclass"  value="noheader"/>
+        <put-attribute name="title"  value="Commodity Gold Charts"/>
+        <put-attribute name="body-content" value="/pages/realtime/realtime-chart-default.jsp"/>
+    </definition>
+
+    <definition name="realtime-index-chart" extends="baseLayout">
+        <put-attribute name="bodyclass"  value=""/>
+        <put-attribute  name="sub-header"   value="/pages/realtime-index/sub-header-rt-index.jsp"/>
+        <put-attribute name="title"  value="Realtime Index Charts"/>
+        <put-attribute name="body-content" value="/pages/realtime-index/realtime-index-chart.jsp"/>
+        <put-attribute name="sidebar"   value="/pages/common/sidebar-short.jsp"/>
+    </definition>
+
+    <definition name="candleChart-input" extends="baseLayout">
+        <put-attribute name="bodyclass"  value="noheader"/>
+        <put-attribute name="title"  value="Daily Stock Pricing Charts - Candlestick"/>
+        <put-attribute name="body-content" value="/pages/candelchart/candelchart-input.jsp"/>
+        <put-attribute name="sidebar"   value=""/>
+        <put-attribute name="head-scripts"   value="/pages/eodcharts/headscripts.jsp"/>
+    </definition>
+
+    <definition name="candleChart-submit" extends="baseLayout">
+        <put-attribute name="bodyclass"  value=""/>
+        <put-attribute  name="sub-header"   value="/pages/eodcharts/sub-header-eod.jsp"/>
+        <put-attribute name="title"  value="Daily Stock Pricing Charts - Candlestick"/>
+        <put-attribute name="body-content" value="/pages/candelchart/candle.jsp"/>
+        <put-attribute name="sidebar"   value=""/>
+    </definition>
+
+    <definition name="ohlcChart-input" extends="baseLayout">
+        <put-attribute name="bodyclass"  value="noheader"/>
+        <put-attribute name="title"  value="Daily Stock Pricing Charts - OHLC"/>
+        <put-attribute name="body-content" value="/pages/ohlcchart/ohlcchart-input.jsp"/>
+        <put-attribute name="head-scripts"   value="/pages/eodcharts/headscripts.jsp"/>
+        <put-attribute name="sidebar"   value=""/>
+    </definition>
+
+    <definition name="ohlcChart-submit" extends="baseLayout">
+        <put-attribute name="bodyclass"  value=""/>
+        <put-attribute  name="sub-header"   value="/pages/eodcharts/sub-header-eod.jsp"/>
+        <put-attribute name="title"  value="Daily Stock Pricing Charts - OHLC"/>
+        <put-attribute name="body-content" value="/pages/ohlcchart/ohlc.jsp"/>
+        <put-attribute name="sidebar"   value=""/>
+    </definition>
+
+    <definition name="eodChart-input" extends="baseLayout">
+        <put-attribute name="bodyclass"  value="noheader"/>
+        <put-attribute name="title"  value="Daily Stock Pricing Charts - Line"/>
+        <put-attribute name="body-content" value="/pages/eodcharts/eodcharts-input.jsp"/>
+        <put-attribute name="sidebar"   value=""/>
+        <put-attribute name="head-scripts"   value="/pages/eodcharts/headscripts.jsp"/>
+    </definition>
+    <definition name="eodChart-submit" extends="baseLayout">
+        <put-attribute name="bodyclass"  value=""/>
+        <put-attribute  name="sub-header"   value="/pages/eodcharts/sub-header-eod.jsp"/>
+        <put-attribute name="title"  value="EOD OHLC charts"/>
+        <put-attribute name="body-content" value="/pages/eodcharts/eodcharts-main.jsp"/>
+        <put-attribute name="sidebar"   value=""/>
+        <put-attribute name="head-scripts"   value="/pages/eodcharts/headscripts.jsp"/>
+    </definition>
+
+    <definition name="divident-input" extends="baseLayout">
+        <put-attribute name="bodyclass"  value="noheader"/>
+        <put-attribute name="title"  value="Daily Stock Pricing Charts - Line"/>
+        <put-attribute name="body-content" value="/pages/dividents/dividents-input.jsp"/>
+        <put-attribute name="sidebar"   value=""/>
+        <put-attribute name="head-scripts"   value="/pages/dividents/headscripts.jsp"/>
+    </definition>
+
+    <definition name="divident-submit" extends="baseLayout">
+        <put-attribute name="bodyclass"  value=""/>
+        <put-attribute  name="sub-header"   value="/pages/dividents/sub-header-eod.jsp"/>
+        <put-attribute name="title"  value="Stock Dividents"/>
+        <put-attribute name="body-content" value="/pages/dividents/dividents-main.jsp"/>
+        <put-attribute name="sidebar"   value=""/>
+        <put-attribute name="head-scripts"   value="/pages/dividents/headscripts.jsp"/>
+    </definition>
+
+    <definition name="split-input" extends="baseLayout">
+        <put-attribute name="bodyclass"  value="noheader"/>
+        <put-attribute name="title"  value="Daily Stock Pricing Charts - Line"/>
+        <put-attribute name="body-content" value="/pages/splits/split-input.jsp"/>
+        <put-attribute name="sidebar"   value=""/>
+        <put-attribute name="head-scripts"   value="/pages/splits/headscripts.jsp"/>
+    </definition>
+
+    <definition name="split-submit" extends="baseLayout">
+        <put-attribute name="bodyclass"  value=""/>
+        <put-attribute  name="sub-header"   value="/pages/splits/sub-header-split.jsp"/>
+        <put-attribute name="title"  value="Stock Splits"/>
+        <put-attribute name="body-content" value="/pages/splits/split-main.jsp"/>
+        <put-attribute name="sidebar"   value=""/>
+        <put-attribute name="head-scripts"   value="/pages/splits/headscripts.jsp"/>
+    </definition>
+
+    <definition name="right-input" extends="baseLayout">
+        <put-attribute name="bodyclass"  value="noheader"/>
+        <put-attribute name="title"  value="Daily Stock Pricing Charts - Line"/>
+        <put-attribute name="body-content" value="/pages/rights/right-input.jsp"/>
+        <put-attribute name="sidebar"   value=""/>
+        <put-attribute name="head-scripts"   value="/pages/rights/headscripts.jsp"/>
+    </definition>
+
+    <definition name="right-submit" extends="baseLayout">
+        <put-attribute name="bodyclass"  value=""/>
+        <put-attribute  name="sub-header"   value="/pages/rights/sub-header-split.jsp"/>
+        <put-attribute name="title"  value="Stock Splits"/>
+        <put-attribute name="body-content" value="/pages/rights/right-main.jsp"/>
+        <put-attribute name="sidebar"   value=""/>
+        <put-attribute name="head-scripts"   value="/pages/rights/headscripts.jsp"/>
+    </definition>
+
+    <definition name="issuedQtyChart" extends="baseLayout">
+        <put-attribute name="bodyclass"  value=""/>
+        <put-attribute  name="sub-header"   value="/pages/eodcharts/sub-header-eod.jsp"/>
+        <put-attribute name="title"  value="Issued Quentity Change"/>
+        <put-attribute name="body-content" value="/pages/issue-qty/IssuedQtyChange.jsp"/>
+        <put-attribute name="sidebar"   value="/pages/issue-qty/sidebar-short.jsp"/>
+    </definition>
+
+    <definition name="foriegnHoldChart" extends="baseLayout">
+        <put-attribute name="bodyclass"  value=""/>
+        <put-attribute  name="sub-header"   value="/pages/eodcharts/sub-header-eod.jsp"/>
+        <put-attribute name="title"  value="Foreign Holding Charts"/>
+        <put-attribute name="body-content" value="/pages/forign-holding/foriegn-holding.jsp"/>
+        <put-attribute name="sidebar"   value="/pages/forign-holding/sidebar-short.jsp"/>
+    </definition>
+
+    <definition name="eodChartSimple" extends="baseLayout">
+        <put-attribute name="bodyclass"  value="noheader"/>
+        <put-attribute name="title"  value="EOD OHLC charts"/>
+        <put-attribute name="body-content" value="/pages/eodcharts/eodcharts-simple.jsp"/>
+        <put-attribute name="sidebar"   value="/pages/eodcharts/eod-sidebar-short.jsp"/>
+    </definition>
+
+    <definition name="eodChartGray" extends="baseLayout">
+        <put-attribute name="bodyclass"  value="noheader"/>
+        <put-attribute name="title"  value="EOD OHLC charts"/>
+        <put-attribute name="body-content" value="/pages/eodcharts/eodcharts-gray.jsp"/>
+        <put-attribute name="sidebar"   value="/pages/eodcharts/eod-sidebar-short.jsp"/>
+    </definition>
+
+    <definition name="eodChartCompact" extends="baseLayout">
+        <put-attribute name="bodyclass"  value="noheader"/>
+        <put-attribute name="title"  value="EOD OHLC charts"/>
+        <put-attribute name="body-content" value="/pages/eodcharts/eodcharts-compact.jsp"/>
+        <put-attribute name="sidebar"   value="/pages/eodcharts/eod-sidebar-short.jsp"/>
+    </definition>
+
+    <definition name="marketIndex-aspi" extends="baseLayout">
+        <put-attribute name="bodyclass"  value=""/>
+        <put-attribute name="title"  value="Market Index"/>
+        <put-attribute name="body-content" value="/pages/market/market-index-aspi.jsp"/>
+        <put-attribute name="sidebar"   value=""/>
+        <put-attribute name="sub-header"   value="/pages/market/sub-header.jsp"/>
+        <put-attribute name="head-scripts"   value="/pages/market/head-script-aspi.jsp"/>
+    </definition>
+
+    <definition name="marketIndex-mpi" extends="baseLayout">
+        <put-attribute name="bodyclass"  value=""/>
+        <put-attribute name="title"  value="Market Index"/>
+        <put-attribute name="body-content" value="/pages/market/market-index-mpi.jsp"/>
+        <put-attribute name="sidebar"   value=""/>
+        <put-attribute name="sub-header"   value="/pages/market/sub-header.jsp"/>
+        <put-attribute name="head-scripts"   value="/pages/market/head-script-mpi.jsp"/>
+    </definition>
+
+    <definition name="marketIndex-snp20" extends="baseLayout">
+        <put-attribute name="bodyclass"  value=""/>
+        <put-attribute name="title"  value="Market Index"/>
+        <put-attribute name="body-content" value="/pages/market/market-index-snp20.jsp"/>
+        <put-attribute name="sidebar"   value=""/>
+        <put-attribute name="sub-header"   value="/pages/market/sub-header.jsp"/>
+        <put-attribute name="head-scripts"   value="/pages/market/head-script-snp20.jsp"/>
+    </definition>
+
+    <definition name="marketIndex-sectors" extends="baseLayout">
+        <put-attribute name="bodyclass"  value=""/>
+        <put-attribute name="title"  value="Market Index"/>
+        <put-attribute name="body-content" value="/pages/market/market-index-sectors.jsp"/>
+        <put-attribute name="sidebar"   value=""/>
+        <put-attribute name="sub-header"   value="/pages/market/sub-header.jsp"/>
+        <put-attribute name="head-scripts"   value="/pages/market/head-script.jsp"/>
+    </definition>
+
+    <definition name="marketTrades" extends="baseLayout">
+        <put-attribute name="bodyclass"  value=""/>
+        <put-attribute name="title"  value="Market Trades"/>
+        <put-attribute name="body-content" value="/pages/market-trades/market-trades.jsp"/>
+        <put-attribute name="sidebar"   value=""/>
+        <put-attribute name="sub-header"   value="/pages/market/sub-header.jsp"/>
+        <put-attribute name="head-scripts"   value="/pages/market-trades/head-script.jsp"/>
+    </definition>
+
+    <definition name="marketTurnover" extends="baseLayout">
+        <put-attribute name="bodyclass"  value=""/>
+        <put-attribute name="title"  value="Market Turnover"/>
+        <put-attribute name="body-content" value="/pages/market-turnover/market-turnover.jsp"/>
+        <put-attribute name="sidebar"   value=""/>
+        <put-attribute name="sub-header"   value="/pages/market/sub-header.jsp"/>
+        <put-attribute name="head-scripts"   value="/pages/market-turnover/head-script.jsp"/>
+    </definition>
+
+    <definition name="marketVolume" extends="baseLayout">
+        <put-attribute name="bodyclass"  value=""/>
+        <put-attribute name="title"  value="Market Turnover"/>
+        <put-attribute name="body-content" value="/pages/market-volume/market-volume.jsp"/>
+        <put-attribute name="sidebar"   value=""/>
+        <put-attribute name="sub-header"   value="/pages/market/sub-header.jsp"/>
+        <put-attribute name="head-scripts"   value="/pages/market-volume/head-script.jsp"/>
+    </definition>
+
+    <definition name="marketDomesticActivity" extends="baseLayout">
+        <put-attribute name="bodyclass"  value=""/>
+        <put-attribute name="title"  value="Market Turnover"/>
+        <put-attribute name="body-content" value="/pages/market-domestic-activity/activity.jsp"/>
+        <put-attribute name="sidebar"   value=""/>
+        <put-attribute name="sub-header"   value="/pages/market/sub-header.jsp"/>
+        <put-attribute name="head-scripts"   value="/pages/market-domestic-activity/head-script.jsp"/>
+    </definition>
+
+    <definition name="marketForeignActivity" extends="baseLayout">
+        <put-attribute name="bodyclass"  value=""/>
+        <put-attribute name="title"  value="Market Turnover"/>
+        <put-attribute name="body-content" value="/pages/market-foreign-activity/activity.jsp"/>
+        <put-attribute name="sidebar"   value=""/>
+        <put-attribute name="sub-header"   value="/pages/market/sub-header.jsp"/>
+        <put-attribute name="head-scripts"   value="/pages/market-foreign-activity/head-script.jsp"/>
+    </definition>
+
+    <definition name="marketCapitalization" extends="baseLayout">
+        <put-attribute name="bodyclass"  value=""/>
+        <put-attribute name="title"  value="Market Turnover"/>
+        <put-attribute name="body-content" value="/pages/market-cap/market-cap.jsp"/>
+        <put-attribute name="sidebar"   value=""/>
+        <put-attribute name="sub-header"   value="/pages/market/sub-header.jsp"/>
+        <put-attribute name="head-scripts"   value="/pages/market-cap/head-script.jsp"/>
+    </definition>
+
+    <definition name="html5" extends="baseLayout">
+        <put-attribute name="bodyclass"  value=""/>
+        <put-attribute name="title"  value="Market Turnover"/>
+        <put-attribute name="body-content" value="/pages/html5/samples/multi.jsp"/>
+        <put-attribute name="sidebar"   value=""/>
+        <put-attribute name="sub-header"   value="/pages/market/sub-header.jsp"/>
+        <put-attribute name="head-scripts"   value="/pages/html5/samples/head-script.jsp"/>
+    </definition>
+
+    <definition name="hc" extends="baseLayout">
+        <put-attribute name="bodyclass"  value=""/>
+        <put-attribute name="title"  value="Market Turnover"/>
+        <put-attribute name="body-content" value="/pages/hc/examples/area/multi.jsp"/>
+        <put-attribute name="sidebar"   value=""/>
+        <put-attribute name="sub-header"   value="/pages/market/sub-header.jsp"/>
+        <put-attribute name="head-scripts"   value="/pages/hc/examples/area/head-script.jsp"/>
+    </definition>
+
+    <definition name="marketChartSummeryAll" extends="baseLayout">
+        <put-attribute name="bodyclass"  value=""/>
+        <put-attribute name="title"  value="Market Turnover"/>
+        <put-attribute name="body-content" value="/pages/market-chart-summery/summery-all.jsp"/>
+        <put-attribute name="sidebar"   value="`"/>
+        <put-attribute name="sub-header"   value="/pages/market/sub-header.jsp"/>
+    </definition>
+
+    <definition name="examples" extends="baseLayout">
+        <put-attribute name="title"  value="Examples"/>
+        <put-attribute name="bodyclass"  value=""/>
+        <put-attribute name="sub-header"   value="/pages/common/sub-header.jsp"/>
+        <put-attribute name="body-content"   value="/pages/examples.jsp"/>
+    </definition>
+
+    <definition name="stockDefault" extends="baseLayout">
+        <put-attribute name="bodyclass"  value="noheader"/>
+        <put-attribute name="title"  value="static text page"/>
+        <put-attribute name="body-content" value="/pages/stock-chart-default/stock-default.jsp"/>
+    </definition>
+
+    <definition name="contacts" extends="baseLayout">
+        <put-attribute name="bodyclass"  value="noheader"/>
+        <put-attribute name="title"  value="static text page"/>
+        <put-attribute name="body-content" value="/pages/contacts/contact.jsp"/>
+    </definition>
+
+    <definition name="search-result" extends="baseLayout">
+        <put-attribute name="bodyclass"  value="noheader"/>
+        <put-attribute name="title"  value="Search Result"/>
+        <put-attribute name="body-content" value="/pages/search/search-result.jsp"/>
+    </definition>
+
+    <definition name="company-info" extends="baseLayout">
+        <put-attribute name="bodyclass"  value="noheader"/>
+        <put-attribute name="title"  value="Company Information"/>
+        <put-attribute name="body-content" value="/pages/search/companyDerail.jsp"/>
+        <put-attribute name="sidebar"   value="/pages/search/sidebar-stock.jsp"/>
+    </definition>
+
+    <definition name="trades" extends="baseLayout">
+        <put-attribute name="bodyclass"  value="noheader"/>
+        <put-attribute name="title"  value="static text page"/>
+        <put-attribute name="body-content" value="/pages/trades/trades.jsp"/>
+    </definition>
+
+    <definition name="foriegnHolding" extends="baseLayout">
+        <put-attribute name="bodyclass"  value="noheader"/>
+        <put-attribute name="title"  value="static text page"/>
+        <put-attribute name="body-content" value="/pages/forign-holding/foriegn-holding.jsp"/>
+    </definition>
+
+
+
+
+</tiles-definitions>

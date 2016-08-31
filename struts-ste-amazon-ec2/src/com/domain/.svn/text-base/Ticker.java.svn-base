@@ -1,0 +1,41 @@
+package com.domain;
+
+import java.util.Date;
+
+/**
+ * Created by IntelliJ IDEA.
+ * User: udoluweera
+ * Date: 2/11/12
+ * Time: 7:06 PM
+ * To change this template use File | Settings | File Templates.
+ */
+public class Ticker {
+    
+    private long id;
+    private long companyid;
+    private String symbol;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public long getCompanyid() {
+        return companyid;
+    }
+
+    public void setCompanyid(long companyid) {
+        this.companyid = companyid;
+    }
+
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public void setSymbol(String symbol) {
+        this.symbol = symbol;
+    }
+}

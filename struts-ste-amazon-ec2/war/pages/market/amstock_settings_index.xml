@@ -1,0 +1,567 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Only the settings with values not equal to defaults are in this file. If you want to see the
+full list of available settings, check the amstock_settings.xml file in the amstock folder. -->
+<settings>
+    <margins>0</margins>
+    <text_size>10</text_size>
+    <header>
+        <enabled>false</enabled>
+    </header>
+
+    <number_format>
+        <letters>
+            <letter number="1000">K</letter>
+            <letter number="1000000">M</letter>
+            <letter number="1000000000">B</letter>
+        </letters>
+    </number_format>
+
+    <data_sets>
+        <data_set did="0">
+            <title>All Share Index</title>
+            <short>All</short>
+            <description>Colombo Stock Market Summery - ASI</description>
+            <file_name>http://localhost:8080/struts-site/amMarketDataServlet.amMarketDataServlet?type=ALL
+            </file_name>
+            <main_drop_down selected="true"></main_drop_down>
+            <compare_list_box selected="false"></compare_list_box>
+            <csv>
+                <reverse>true</reverse>
+                <separator>,</separator>
+                <date_format>YYYY-MM-DD</date_format>
+                <decimal_separator>.</decimal_separator>
+                <columns>
+                    <column>date</column>
+                    <column>close</column>
+                </columns>
+            </csv>
+        </data_set>
+        <data_set did="1">
+            <title>Milanka Price Index</title>
+            <short>Milanka</short>
+            <description>Colombo Stock Market Summery - MPI</description>
+            <file_name>http://localhost:8080/struts-site/amMarketDataServlet.amMarketDataServlet?type=MIL
+            </file_name>
+            <compare_list_box selected="false"></compare_list_box>
+            <csv>
+                <reverse>true</reverse>
+                <separator>,</separator>
+                <date_format>YYYY-MM-DD</date_format>
+                <decimal_separator>.</decimal_separator>
+                <columns>
+                    <column>date</column>
+                    <column>close</column>
+                </columns>
+            </csv>
+            <smoothed>1</smoothed>
+        </data_set>
+        <data_set did="2">
+            <title>SNP SL20 Index</title>
+            <short>SNPSL20</short>
+            <description>Colombo Stock Market Summery - SNP SL20</description>
+            <file_name>http://localhost:8080/struts-site/amMarketDataServlet.amMarketDataServlet?type=SNP
+            </file_name>
+            <compare_list_box selected="false"></compare_list_box>
+            <csv>
+                <reverse>true</reverse>
+                <separator>,</separator>
+                <date_format>YYYY-MM-DD</date_format>
+                <decimal_separator>.</decimal_separator>
+                <columns>
+                    <column>date</column>
+                    <column>close</column>
+                </columns>
+            </csv>
+            <smoothed>1</smoothed>
+        </data_set>
+        <data_set did="3">
+            <title>Banks Finance and Insurance</title>
+            <short>BFI</short>
+            <description>Colombo Stock Market Summery - Banks Finance and Insurance</description>
+            <file_name>http://localhost:8080/struts-site/amMarketDataServlet.amMarketDataServlet?type=BFI
+            </file_name>
+            <compare_list_box selected="false"></compare_list_box>
+            <csv>
+                <reverse>true</reverse>
+                <separator>,</separator>
+                <date_format>YYYY-MM-DD</date_format>
+                <decimal_separator>.</decimal_separator>
+                <columns>
+                    <column>date</column>
+                    <column>close</column>
+                </columns>
+            </csv>
+            <smoothed>1</smoothed>
+        </data_set>
+        <data_set did="4">
+            <title>Beverage, Food and Tobacco</title>
+            <short>BFT</short>
+            <description>Colombo Stock Market Summery - Beverage, Food and Tobacco</description>
+            <file_name>http://localhost:8080/struts-site/amMarketDataServlet.amMarketDataServlet?type=BFT
+            </file_name>
+            <compare_list_box selected="false"></compare_list_box>
+            <csv>
+                <reverse>true</reverse>
+                <separator>,</separator>
+                <date_format>YYYY-MM-DD</date_format>
+                <decimal_separator>.</decimal_separator>
+                <columns>
+                    <column>date</column>
+                    <column>close</column>
+                </columns>
+            </csv>
+            <smoothed>1</smoothed>
+        </data_set>
+        <data_set did="5">
+            <title>Chemicals and Pharmaceuticals</title>
+            <short>CNP</short>
+            <description>Colombo Stock Market Summery - Chemicals and Pharmaceuticals</description>
+            <file_name>http://localhost:8080/struts-site/amMarketDataServlet.amMarketDataServlet?type=CNP
+            </file_name>
+            <compare_list_box selected="false"></compare_list_box>
+            <csv>
+                <reverse>true</reverse>
+                <separator>,</separator>
+                <date_format>YYYY-MM-DD</date_format>
+                <decimal_separator>.</decimal_separator>
+                <columns>
+                    <column>date</column>
+                    <column>close</column>
+                </columns>
+            </csv>
+            <smoothed>1</smoothed>
+        </data_set>
+        <data_set did="6">
+            <title>Diversified</title>
+            <short>DIV</short>
+            <description>Colombo Stock Market Summery - Diversified</description>
+            <file_name>http://localhost:8080/struts-site/amMarketDataServlet.amMarketDataServlet?type=DIV
+            </file_name>
+            <compare_list_box selected="false"></compare_list_box>
+            <csv>
+                <reverse>true</reverse>
+                <separator>,</separator>
+                <date_format>YYYY-MM-DD</date_format>
+                <decimal_separator>.</decimal_separator>
+                <columns>
+                    <column>date</column>
+                    <column>close</column>
+                </columns>
+            </csv>
+            <smoothed>1</smoothed>
+        </data_set>
+        <data_set did="7">
+            <title>Footwear and Textile</title>
+            <short>FNT</short>
+            <description>Colombo Stock Market Summery - Footwear and Textile</description>
+            <file_name>http://localhost:8080/struts-site/amMarketDataServlet.amMarketDataServlet?type=FNT
+            </file_name>
+            <compare_list_box selected="false"></compare_list_box>
+            <csv>
+                <reverse>true</reverse>
+                <separator>,</separator>
+                <date_format>YYYY-MM-DD</date_format>
+                <decimal_separator>.</decimal_separator>
+                <columns>
+                    <column>date</column>
+                    <column>close</column>
+                </columns>
+            </csv>
+            <smoothed>1</smoothed>
+        </data_set>
+        <data_set did="8">
+            <title>Healthcare</title>
+            <short>HLT</short>
+            <description>Colombo Stock Market Summery - Healthcare</description>
+            <file_name>http://localhost:8080/struts-site/amMarketDataServlet.amMarketDataServlet?type=HLT
+            </file_name>
+            <compare_list_box selected="false"></compare_list_box>
+            <csv>
+                <reverse>true</reverse>
+                <separator>,</separator>
+                <date_format>YYYY-MM-DD</date_format>
+                <decimal_separator>.</decimal_separator>
+                <columns>
+                    <column>date</column>
+                    <column>close</column>
+                </columns>
+            </csv>
+            <smoothed>1</smoothed>
+        </data_set>
+        <data_set did="9">
+            <title>Hotels and Travels</title>
+            <short>HNT</short>
+            <description>Colombo Stock Market Summery - Hotels and Travels</description>
+            <file_name>http://localhost:8080/struts-site/amMarketDataServlet.amMarketDataServlet?type=HNT
+            </file_name>
+            <compare_list_box selected="false"></compare_list_box>
+            <csv>
+                <reverse>true</reverse>
+                <separator>,</separator>
+                <date_format>YYYY-MM-DD</date_format>
+                <decimal_separator>.</decimal_separator>
+                <columns>
+                    <column>date</column>
+                    <column>close</column>
+                </columns>
+            </csv>
+            <smoothed>1</smoothed>
+        </data_set>
+        <data_set did="10">
+            <title>Investment Trusts</title>
+            <short>INV</short>
+            <description>Colombo Stock Market Summery - Investment Trusts</description>
+            <file_name>http://localhost:8080/struts-site/amMarketDataServlet.amMarketDataServlet?type=INV
+            </file_name>
+            <compare_list_box selected="false"></compare_list_box>
+            <csv>
+                <reverse>true</reverse>
+                <separator>,</separator>
+                <date_format>YYYY-MM-DD</date_format>
+                <decimal_separator>.</decimal_separator>
+                <columns>
+                    <column>date</column>
+                    <column>close</column>
+                </columns>
+            </csv>
+            <smoothed>1</smoothed>
+        </data_set>
+        <data_set did="11">
+            <title>IT</title>
+            <short>CNE</short>
+            <description>Colombo Stock Market Summery - IT</description>
+            <file_name>http://localhost:8080/struts-site/amMarketDataServlet.amMarketDataServlet?type=IT
+            </file_name>
+            <compare_list_box selected="false"></compare_list_box>
+            <csv>
+                <reverse>true</reverse>
+                <separator>,</separator>
+                <date_format>YYYY-MM-DD</date_format>
+                <decimal_separator>.</decimal_separator>
+                <columns>
+                    <column>date</column>
+                    <column>close</column>
+                </columns>
+            </csv>
+            <smoothed>1</smoothed>
+        </data_set>
+        <data_set did="12">
+            <title>Land and Property</title>
+            <short>LNP</short>
+            <description>Colombo Stock Market Summery - Land and Property</description>
+            <file_name>http://localhost:8080/struts-site/amMarketDataServlet.amMarketDataServlet?type=LNP
+            </file_name>
+            <compare_list_box selected="false"></compare_list_box>
+            <csv>
+                <reverse>true</reverse>
+                <separator>,</separator>
+                <date_format>YYYY-MM-DD</date_format>
+                <decimal_separator>.</decimal_separator>
+                <columns>
+                    <column>date</column>
+                    <column>close</column>
+                </columns>
+            </csv>
+            <smoothed>1</smoothed>
+        </data_set>
+        <data_set did="13">
+            <title>Manufacturing</title>
+            <short>MFG</short>
+            <description>Colombo Stock Market Summery - Manufacturing</description>
+            <file_name>http://localhost:8080/struts-site/amMarketDataServlet.amMarketDataServlet?type=MFG
+            </file_name>
+            <compare_list_box selected="false"></compare_list_box>
+            <csv>
+                <reverse>true</reverse>
+                <separator>,</separator>
+                <date_format>YYYY-MM-DD</date_format>
+                <decimal_separator>.</decimal_separator>
+                <columns>
+                    <column>date</column>
+                    <column>close</column>
+                </columns>
+            </csv>
+            <smoothed>1</smoothed>
+        </data_set>
+        <data_set did="14">
+            <title>Motors</title>
+            <short>MTR</short>
+            <description>Colombo Stock Market Summery - Motors</description>
+            <file_name>http://localhost:8080/struts-site/amMarketDataServlet.amMarketDataServlet?type=MTR
+            </file_name>
+            <compare_list_box selected="false"></compare_list_box>
+            <csv>
+                <reverse>true</reverse>
+                <separator>,</separator>
+                <date_format>YYYY-MM-DD</date_format>
+                <decimal_separator>.</decimal_separator>
+                <columns>
+                    <column>date</column>
+                    <column>close</column>
+                </columns>
+            </csv>
+            <smoothed>1</smoothed>
+        </data_set>
+        <data_set did="15">
+            <title>Oil Palms</title>
+            <short>OIL</short>
+            <description>Colombo Stock Market Summery - Oil Palms</description>
+            <file_name>http://localhost:8080/struts-site/amMarketDataServlet.amMarketDataServlet?type=OIL
+            </file_name>
+            <compare_list_box selected="false"></compare_list_box>
+            <csv>
+                <reverse>true</reverse>
+                <separator>,</separator>
+                <date_format>YYYY-MM-DD</date_format>
+                <decimal_separator>.</decimal_separator>
+                <columns>
+                    <column>date</column>
+                    <column>close</column>
+                </columns>
+            </csv>
+            <smoothed>1</smoothed>
+        </data_set>
+        <data_set did="16">
+            <title>Plantations</title>
+            <short>PLT</short>
+            <description>Colombo Stock Market Summery - Plantations</description>
+            <file_name>http://localhost:8080/struts-site/amMarketDataServlet.amMarketDataServlet?type=PLT
+            </file_name>
+            <compare_list_box selected="false"></compare_list_box>
+            <csv>
+                <reverse>true</reverse>
+                <separator>,</separator>
+                <date_format>YYYY-MM-DD</date_format>
+                <decimal_separator>.</decimal_separator>
+                <columns>
+                    <column>date</column>
+                    <column>close</column>
+                </columns>
+            </csv>
+            <smoothed>1</smoothed>
+        </data_set>
+        <data_set did="17">
+            <title>Power and Energy</title>
+            <short>PNE</short>
+            <description>Colombo Stock Market Summery - Power and Energy</description>
+            <file_name>http://localhost:8080/struts-site/amMarketDataServlet.amMarketDataServlet?type=PNE
+            </file_name>
+            <compare_list_box selected="false"></compare_list_box>
+            <csv>
+                <reverse>true</reverse>
+                <separator>,</separator>
+                <date_format>YYYY-MM-DD</date_format>
+                <decimal_separator>.</decimal_separator>
+                <columns>
+                    <column>date</column>
+                    <column>close</column>
+                </columns>
+            </csv>
+            <smoothed>1</smoothed>
+        </data_set>
+        <data_set did="18">
+            <title>Construction and Engineering</title>
+            <short>CNE</short>
+            <description>Colombo Stock Market Summery - Construction and Engineering</description>
+            <file_name>http://localhost:8080/struts-site/amMarketDataServlet.amMarketDataServlet?type=CNE
+            </file_name>
+            <compare_list_box selected="false"></compare_list_box>
+            <csv>
+                <reverse>true</reverse>
+                <separator>,</separator>
+                <date_format>YYYY-MM-DD</date_format>
+                <decimal_separator>.</decimal_separator>
+                <columns>
+                    <column>date</column>
+                    <column>close</column>
+                </columns>
+            </csv>
+            <smoothed>1</smoothed>
+        </data_set>
+        <data_set did="19">
+            <title>Services</title>
+            <short>SRV</short>
+            <description>Colombo Stock Market Summery - Services</description>
+            <file_name>http://localhost:8080/struts-site/amMarketDataServlet.amMarketDataServlet?type=SRV
+            </file_name>
+            <compare_list_box selected="false"></compare_list_box>
+            <csv>
+                <reverse>true</reverse>
+                <separator>,</separator>
+                <date_format>YYYY-MM-DD</date_format>
+                <decimal_separator>.</decimal_separator>
+                <columns>
+                    <column>date</column>
+                    <column>close</column>
+                </columns>
+            </csv>
+            <smoothed>1</smoothed>
+        </data_set>
+        <data_set did="20">
+            <title>Stores and Supplies</title>
+            <short>SNS</short>
+            <description>Colombo Stock Market Summery - Stores and Supplies</description>
+            <file_name>http://localhost:8080/struts-site/amMarketDataServlet.amMarketDataServlet?type=SNS
+            </file_name>
+            <compare_list_box selected="false"></compare_list_box>
+            <csv>
+                <reverse>true</reverse>
+                <separator>,</separator>
+                <date_format>YYYY-MM-DD</date_format>
+                <decimal_separator>.</decimal_separator>
+                <columns>
+                    <column>date</column>
+                    <column>close</column>
+                </columns>
+            </csv>
+            <smoothed>1</smoothed>
+        </data_set>
+        <data_set did="21">
+            <title>Telecommunications</title>
+            <short>TLE</short>
+            <description>Colombo Stock Market Summery - Telecommunications</description>
+            <file_name>http://localhost:8080/struts-site/amMarketDataServlet.amMarketDataServlet?type=TLE
+            </file_name>
+            <compare_list_box selected="false"></compare_list_box>
+            <csv>
+                <reverse>true</reverse>
+                <separator>,</separator>
+                <date_format>YYYY-MM-DD</date_format>
+                <decimal_separator>.</decimal_separator>
+                <columns>
+                    <column>date</column>
+                    <column>close</column>
+                </columns>
+            </csv>
+            <smoothed>1</smoothed>
+        </data_set>
+        <data_set did="22">
+            <title>Trading</title>
+            <short>TRD</short>
+            <description>Colombo Stock Market Summery - Trading</description>
+            <file_name>http://localhost:8080/struts-site/amMarketDataServlet.amMarketDataServlet?type=TRD
+            </file_name>
+            <compare_list_box selected="false"></compare_list_box>
+            <csv>
+                <reverse>true</reverse>
+                <separator>,</separator>
+                <date_format>YYYY-MM-DD</date_format>
+                <decimal_separator>.</decimal_separator>
+                <columns>
+                    <column>date</column>
+                    <column>close</column>
+                </columns>
+            </csv>
+            <smoothed>1</smoothed>
+        </data_set>
+    </data_sets>
+
+    <error_messages>
+        <enabled>0</enabled>
+    </error_messages>
+
+    <charts>
+        <chart cid="0">
+            <bg_color>f5f5f5,ffffff</bg_color>
+            <border_color>#CCCCCC</border_color>
+            <border_alpha>100</border_alpha>
+
+            <grid>
+                <x>
+                    <dashed>true</dashed>
+                </x>
+
+
+                <y_right>
+                    <color>cccccc</color>
+                    <alpha>100</alpha>
+                    <dashed>true</dashed>
+                </y_right>
+            </grid>
+
+            <legend>
+                <graph_on_off>false</graph_on_off>
+                <fade_others_to>10</fade_others_to>
+                <show_date>true</show_date>
+            </legend>
+
+            <graphs>
+                <graph gid="0">
+                    <smoothed>1</smoothed>
+                    <alpha>76</alpha>
+
+                    <cursor_alpha>85</cursor_alpha>
+                    <corner_radius>4</corner_radius>
+                    <axis>right</axis>
+                    <type>line</type>
+                    <data_sources>
+                        <close>close</close>
+                    </data_sources>
+
+                    <compare_source>close</compare_source>
+
+                    <legend>
+                        <date key="true" title="true"><![CDATA[<b>{close}</b>]]></date>
+                        <period key="true" title="true">
+                            <![CDATA[open:<b>{open}</b> low:<b>{low}</b> high:<b>{high}</b> close:<b>{close}</b>]]></period>
+                        <date_comparing key="true" title="true"><![CDATA[{close.percents}]]></date_comparing>
+                        <period_comparing key="true" title="true"><![CDATA[{close.percents}]]></period_comparing>
+                    </legend>
+                </graph>
+            </graphs>
+        </chart>
+    </charts>
+
+    <data_set_selector>
+        <width>170</width>
+        <max_comparing_count>3</max_comparing_count>
+        <main_drop_down_title>Select:</main_drop_down_title>
+        <compare_list_box_title>Compare to:</compare_list_box_title>
+        <balloon_text>{title}: {description}</balloon_text>
+    </data_set_selector>
+
+    <period_selector>
+        <button>
+            <bg_color_hover>b81d1b</bg_color_hover>
+            <bg_color_selected>b81d1b</bg_color_selected>
+            <text_color_hover>ffffff</text_color_hover>
+            <text_color_selected>ffffff</text_color_selected>
+        </button>
+
+        <periods>
+            <period type="DD" count="1">1D</period>
+            <period type="DD" count="5">5D</period>
+            <period type="DD" count="10">10D</period>
+            <period type="MM" count="1">1M</period>
+            <period type="MM" count="3">3M</period>
+            <period type="MM" count="3">6M</period>
+            <period type="MM" count="3">9M</period>
+            <period selected="true" type="YYYY" count="1">1Y</period>
+            <period type="YYYY" count="3">3Y</period>
+            <period type="YTD" count="0">YTD</period>
+            <period type="MAX">MAX</period>
+        </periods>
+
+        <periods_title>Zoom:</periods_title>
+        <custom_period_title>Custom period:</custom_period_title>
+    </period_selector>
+
+    <header>
+        <enabled></enabled>
+        <text><![CDATA[<b>{title}</b> ({short}) {description}]]></text>
+        <text_size>12</text_size>
+    </header>
+
+    <plot_area>
+        <border_color>cccccc</border_color>
+    </plot_area>
+
+    <scroller>
+        <enabled>true</enabled>
+        <height>50</height>
+        <graph_data_source>close</graph_data_source>
+        <bg_color>f5f5f5,ffffff</bg_color>
+        <resize_button_style>dragger</resize_button_style>
+    </scroller>
+
+</settings>

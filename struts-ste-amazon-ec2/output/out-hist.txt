@@ -1,0 +1,3 @@
+seq version             time         classes         NCSS        added      newCode        fixed      removed     retained         dead       active
+  0 struts-site  21-March-2012 2012.03.21       258        12663            0          189            0            0            0            0          189
+  1 struts-site  22-March-2012 2012.03.22       344        17052            0            2            2            0          187            0          189

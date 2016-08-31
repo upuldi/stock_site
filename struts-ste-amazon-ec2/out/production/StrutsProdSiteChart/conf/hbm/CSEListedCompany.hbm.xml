@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+      "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+	<!-- Hibernate Mapping for domain class DailyTrades -->
+<hibernate-mapping package="com.domain">
+
+	<class name="CSEListedCompany">
+
+		<id name="id" column="ID" type="long">
+			<generator class="org.hibernate.id.Assigned" />
+		</id>
+
+		<property name="companyName" column="COMPANY_NAME" insert="false" update="false" />
+		<property name="stockCode" column="TICKER" insert="false" update="false" />
+		<property name="sector" column="SECTOR" insert="false" update="false" />
+		<property name="board" column="BOARD" insert="false" update="false" />
+        <property name="address" column="ADDRESS" insert="false" update="false" />
+        <property name="telephone" column="TELEPHONE" insert="false" update="false" />
+        <property name="fax" column="FAX" insert="false" update="false" />
+        <property name="email" column="EMAIL" insert="false" update="false" />
+        <property name="website" column="WEBSITE" insert="false" update="false" />
+        <property name="financialYearEnd" column="FINANCIAL_YEAR_END" insert="false" update="false" />
+        <property name="established" column="ESTABLISHED" insert="false" update="false" />
+        <property name="quotedDate" column="QUOTED_DATE" insert="false" update="false" />
+        <property name="chairman" column="CHAIRMAN" insert="false" update="false" />
+        <property name="description" column="DESCRIPTION" insert="false" update="false" />
+	</class>
+
+    <sql-query name="getCSEListedCompanyCodes">
+        <return alias="e" class="CSEListedCompany" />
+        <![CDATA[
+              select T.ID,T.TICKER as TICKER , '' AS COMPANY_NAME,  '' SECTOR, '' BOARD,
+              '' ADDRESS,'' TELEPHONE,'' FAX,'' EMAIL,'' WEBSITE ,''  FINANCIAL_YEAR_END,'' ESTABLISHED,'' QUOTED_DATE,''  CHAIRMAN,'' DESCRIPTION
+              from upuldi_CSEDAILYDATA.COMPANY_TICKER T order by TICKER;
+         ]]>
+    </sql-query>
+    <sql-query name="getCSEListedCompaniesForSearchString">
+        <return alias="e" class="CSEListedCompany" />
+        <![CDATA[
+                select L.ID,L.COMPANY_NAME , L.CODE as TICKER, L.SECTOR,L.BOARD,
+                 '' ADDRESS,'' TELEPHONE,'' FAX,'' EMAIL,'' WEBSITE ,''  FINANCIAL_YEAR_END,'' ESTABLISHED,'' QUOTED_DATE,''  CHAIRMAN ,'' DESCRIPTION
+                from upuldi_CSEDAILYDATA.LISTED_COMPANY L
+                where L.COMPANY_NAME like :searchString or L.CODE  like :searchString
+                order by L.COMPANY_NAME;
+         ]]>
+    </sql-query>
+
+    <sql-query name="getCSEListedCompanyById">
+        <return alias="e" class="CSEListedCompany" />
+        <![CDATA[
+              select L.*, L.CODE as TICKER
+              from upuldi_CSEDAILYDATA.LISTED_COMPANY L
+              where L.Id = :id ;
+         ]]>
+    </sql-query>
+
+
+
+</hibernate-mapping>

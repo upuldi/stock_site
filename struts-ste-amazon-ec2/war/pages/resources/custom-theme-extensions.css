@@ -1,0 +1,20 @@
+.tileGrid {
+    border: 1px solid rgb(140, 163, 230);
+}
+
+.tileHomeName,
+.tileHomeNameOver,
+.tileHomeNameSelected,
+.tileHomeNameSelectedOver {
+    color: darkblue;
+    font-weight: bold;
+    padding-bottom: 1;
+}
+
+.tileHomeDetails,
+.tileHomeDetailsOver,
+.tileHomeDetailsSelected,
+.tileHomeDetailsSelectedOver {
+    color: black;
+    padding-top: 2;
+}

@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <constant name="struts.action.excludePattern" value="/testDataServlet*"/>
+
+    <package name="default" extends="struts-default">
+
+        <result-types>
+            <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
+            <result-type name="json" class="org.apache.struts2.json.JSONResult">
+                <param name="noCache">true</param>
+                <param name="enumAsBean">true</param>
+                <param name="excludeNullProperties">true</param>
+            </result-type>
+        </result-types>
+
+        <action name="*Link" method="{1}" class="linkAction">
+            <result name="home" type="tiles">home</result>
+            <result name="statictext" type="tiles">statictext</result>
+            <result name="examples" type="tiles">examples</result>
+            <result name="commodity" type="tiles">commodity</result>
+            <result name="gold" type="tiles">gold</result>
+            <result name="realtime" type="tiles">realtime</result>
+            <result name="foriegnHolding" type="tiles">foriegnHolding</result>
+            <result name="trade" type="tiles">trades</result>
+            <result name="contactUs" type="tiles">contacts</result>
+            <result name="defaultStock" type="tiles">stockDefault</result>
+            <result name="commodityDefault" type="tiles">commodityDefault</result>
+            <result name="realtimeDefault" type="tiles">realtimeDefault</result>
+        </action>
+
+        <action name="*LoginAction" method="{1}" class="test.action.LoginAction">
+            <result name="admin" type="redirect">login.jsp</result>
+        </action>
+
+
+        <action name="*Echo" method="{1}" class="com.site.action.test.Echo">
+            <result name="success" type="tiles">realtime</result>
+        </action>
+        <action name="*DayChartAction" method="{1}" class="dayChartAction">
+            <result name="success" type="tiles">daychart</result>
+        </action>
+        <action name="*CandleChartAction" method="{1}" class="candleChartAction">
+            <result name="candleChart-input" type="tiles">candleChart-input</result>
+            <result name="candleChart-submit" type="tiles">candleChart-submit</result>
+        </action>
+        <action name="*OHLCChartAction" method="{1}" class="oHLCChartAction">
+            <result name="ohlcChart-input" type="tiles">ohlcChart-input</result>
+            <result name="ohlcChart-submit" type="tiles">ohlcChart-submit</result>
+        </action>
+        <action name="*EODChartAction" method="{1}" class="eODChartAction">
+            <result name="eodChart-input" type="tiles">eodChart-input</result>
+            <result name="eodChart-submit" type="tiles">eodChart-submit</result>
+        </action>
+        <action name="*StockDividentAction" method="{1}" class="stockDividentAction">
+            <result name="divident-input" type="tiles">divident-input</result>
+            <result name="divident-submit" type="tiles">divident-submit</result>
+        </action>
+        <action name="*StockChartByTickerAction" method="{1}" class="stockChartByTickerAction">
+            <result name="eodChart-submit" type="tiles">eodChart-submit</result>
+        </action>
+        <action name="*StockSplitAction" method="{1}" class="stockSplitAction">
+            <result name="split-input" type="tiles">split-input</result>
+            <result name="split-submit" type="tiles">split-submit</result>
+        </action>
+        <action name="*StockRightsAction" method="{1}" class="stockRightsAction">
+            <result name="split-input" type="tiles">split-input</result>
+            <result name="split-submit" type="tiles">split-submit</result>
+        </action>
+        <action name="*IssuedQtyChart" method="{1}" class="issuedQtyChart">
+            <result name="success" type="tiles">issuedQtyChart</result>
+        </action>
+        <action name="*ForiegnHoldChart" method="{1}" class="foriegnHoldChart">
+            <result name="success" type="tiles">foriegnHoldChart</result>
+        </action>
+        <action name="*EODChartSideBarAction" method="{1}" class="eODChartSideBarAction">
+            <result name="simple" type="tiles">eodChartSimple</result>
+            <result name="gray" type="tiles">eodChartGray</result>
+            <result name="compact" type="tiles">eodChartCompact</result>
+        </action>
+        <action name="*MarketChartAction" method="{1}" class="marketChartAction">
+            <result name="index-aspi" type="tiles">marketIndex-aspi</result>
+            <result name="index-mpi" type="tiles">marketIndex-mpi</result>
+            <result name="index-snp20" type="tiles">marketIndex-snp20</result>
+            <result name="index-sectors" type="tiles">marketIndex-sectors</result>
+            <result name="gray" type="tiles">eodChartGray</result>
+            <result name="compact" type="tiles">eodChartCompact</result>
+        </action>
+        <action name="*MarketTradesChartAction" method="{1}" class="marketTradesChartAction">
+            <result name="success" type="tiles">marketTrades</result>
+        </action>
+        <action name="*MarketTurnoverChartAction" method="{1}" class="marketTurnoverChartAction">
+            <result name="success" type="tiles">marketTurnover</result>
+        </action>
+        <action name="*MarketVolumeChartAction" method="{1}" class="marketVolumeChartAction">
+            <result name="success" type="tiles">marketVolume</result>
+        </action>
+        <action name="*MarketDomesticActivityAction" method="{1}" class="marketDomesticActivityAction">
+            <result name="success" type="tiles">marketDomesticActivity</result>
+        </action>
+        <action name="*MarketForeignActivityAction" method="{1}" class="marketForeignActivityAction">
+            <result name="success" type="tiles">marketForeignActivity</result>
+        </action>
+        <action name="*MarketCapitalizationAction" method="{1}" class="marketCapitalizationAction">
+            <result name="success" type="tiles">marketCapitalization</result>
+        </action>
+        <action name="*HTML5TestAction" method="{1}" class="hTML5TestAction">
+            <result name="success" type="tiles">html5</result>
+        </action>
+        <action name="*HCTestAction" method="{1}" class="hCTestAction">
+            <result name="success" type="tiles">hc</result>
+        </action>
+        <action name="*MarketSummeryAllAction" method="{1}" class="marketSummeryAllAction">
+            <result name="success" type="tiles">marketChartSummeryAll</result>
+        </action>
+        <action name="*RealtimeChartAction" method="{1}" class="realtimeChartAction">
+            <result name="success" type="tiles">realtimechart</result>
+        </action>
+        <action name="*RealtimeIndexChartAction" method="{1}" class="realtimeIndexChartAction">
+            <result name="success" type="tiles">realtime-index-chart</result>
+        </action>
+        <action name="*ContractUsAction" method="{1}" class="contractUsAction">
+            <result name="success" type="tiles">contacts</result>
+        </action>
+        <action name="*RealtimeIndexAJAXData" method="{1}" class="realtimeIndexAJAXData">
+            <result type="json"/>
+        </action>
+        <action name="*AJAXHtml5ChartData" method="{1}" class="aJAXHtml5ChartData">
+            <result type="json"/>
+        </action>
+        <action name="*AJAXHCChartDataAction" method="{1}" class="aJAXHCChartDataAction">
+            <result type="plainText"/>
+        </action>
+        <action name="*DiyanamicHCChartDataAJAX" method="{1}" class="diyanamicHCChartDataAJAX">
+            <result type="plainText"/>
+        </action>
+        <action name="*PieChartAjaxData" method="{1}" class="pieChartAjaxData">
+            <result type="json"/>
+        </action>
+        <action name="*RealTimeTickerAJAXData" method="{1}" class="realTimeTickerAJAXData">
+            <result type="json"/>
+            <result name="input" type="json"/>
+        </action>
+        <action name="*RealtimeMarketStatusData" method="{1}" class="realtimeMarketStatusData">
+            <result type="json"/>
+        </action>
+        <action name="*AutoFillDataSupport" method="{1}" class="autoFillDataSupport">
+            <result type="plainText"/>
+        </action>
+        <action name="*SearchAction" method="{1}" class="searchAction">
+            <!--  <result type="json"/>-->
+            <result name="success" type="tiles">search-result</result>
+        </action>
+        <action name="*CompanyInfo" method="{1}" class="companyLink">
+            <result name="success" type="tiles">company-info</result>
+        </action>
+
+        <action name="*EODDataAction" method="{1}" class="eODDataAction">
+            <result name="success" type="stream">
+                <param name="contentType">text/csv</param>
+                <param name="inputName">fileInputStream</param>
+                <param name="contentDisposition">attachment; fileName=data.csv</param>
+                <param name="bufferSize">1024</param>
+            </result>
+        </action>
+
+
+        <action name="*MarketDataAction" method="{1}" class="marketDataCSV">
+            <result name="success" type="stream">
+                <param name="contentType">text/csv</param>
+                <param name="inputName">fileInputStream</param>
+                <param name="contentDisposition">attachment; fileName=data.csv</param>
+                <param name="bufferSize">1024</param>
+            </result>
+        </action>
+
+
+        <action name="*RealTimeDataCSVAction" method="{1}" class="realTimeDataCSVAction">
+            <result name="success" type="stream">
+                <param name="contentType">text/csv</param>
+                <param name="inputName">fileInputStream</param>
+                <param name="contentDisposition">attachment; fileName=data.csv</param>
+                <param name="bufferSize">1024</param>
+            </result>
+        </action>
+
+        <action name="*RealTImeIndexDataCSVAction" method="{1}" class="realTImeIndexDataCSVAction">
+            <result name="success" type="stream">
+                <param name="contentType">text/csv</param>
+                <param name="inputName">fileInputStream</param>
+                <param name="contentDisposition">attachment; fileName=data.csv</param>
+                <param name="bufferSize">1024</param>
+            </result>
+        </action>
+
+        <action name="*CommodityDataCVSAction" method="{1}" class="commodityDataCVSAction">
+            <result name="success" type="stream">
+                <param name="contentType">text/csv</param>
+                <param name="inputName">fileInputStream</param>
+                <param name="contentDisposition">attachment; fileName=data.csv</param>
+                <param name="bufferSize">1024</param>
+            </result>
+        </action>
+
+
+    </package>
+
+
+
+
+
+</struts>

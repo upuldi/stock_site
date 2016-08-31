@@ -1,0 +1,683 @@
+.noprint {
+    display: none;
+}
+
+.massBlue
+{
+	text-decoration: none;
+    font-family: Arial;
+    font-size: 11px;
+}
+
+.massRed
+{
+	text-decoration: none;
+	color: red;
+    font-family: Arial;
+    font-size: 11px;
+}
+
+.massBlue1
+{
+    display: none;
+}
+
+.massRed1
+{
+    display: none;
+}
+
+
+.results {
+    border-style:none;
+    border-width: 1px;
+}
+.results tr.odd td {
+    border-style:none;
+    border-width: 1px;
+    margin:1px 1px 1px 1px;
+    font-family: Arial;
+    font-size: 11px;
+    left:2;
+    height:30;
+}
+.results tr.even  td {
+    border-style:none;
+    border-width: 1px;
+    margin:2px 1px 1px 2px;
+    font-family: Arial;
+    font-size: 11px;
+    left:2;
+    height:30;
+}
+
+.results th {
+    border-style:none;
+    border-width: 1px;
+    margin:2px 1px 1px 2px;
+    font-family: Arial; font-size: 12px;
+    font-weight:bold;
+    left:2;
+    height:30;
+}
+
+.results tr.highlight  td {
+}
+
+.results tr.highlight1  td {
+}
+
+.ttresults tr.odd td {
+    border-style:solid;
+    border-width:thin;
+    border-spacing:0px;
+    margin:1px 1px 1px 1px;
+    font-family: Arial;
+    font-size: 11px;
+    left:2;
+    height:30;
+}
+.ttresults tr.even  td {
+    border-style:solid;
+    border-width:thin;
+    border-spacing:0px;
+    margin:2px 1px 1px 2px;
+    font-family: Arial;
+    font-size: 11px;
+    left:2;
+    height:30;
+}
+
+.ttresults th {
+    border-style:solid;
+    border-width:thin;
+    border-spacing:0px;    
+    margin:2px 1px 1px 2px;
+    font-family: Arial; font-size: 12px;
+    font-weight:bold;
+    left:2;
+    height:30;
+}
+
+
+.ttresults tr.highlight  td {
+
+}
+
+.ttresults tr.highlight1  td {
+
+}
+
+.sig {
+    border-color: red;
+    border-style:dotted;
+    border-width:thin;
+}
+
+.build {
+    background-color: #DAE4F1;
+    font-family: Arial;
+    font-size: 11px;
+    color: #000000;
+}
+
+body
+{
+	margin:0px 0px 0px 0px;
+	font-family: Arial;
+	font-size: 11px;
+	color: #000000;
+}
+
+a
+{
+	text-decoration: none;
+	color: #226793;
+	text-decoration: underline;
+}
+
+#contact
+{
+	color: #333333;
+	text-decoration: underline;
+}
+
+#contact a
+{
+	color: #333333;
+	text-decoration: underline;
+}
+
+#contact a:hover
+{
+	color: #999999;
+	text-decoration: none;
+}
+
+.spacewhite5
+{
+	background-color: #FFFFFF;
+	line-height: 5px;
+}
+
+.space1
+{
+	line-height: 1px;
+	height: 1px;
+	font-family: Arial;
+	font-size: 1px;
+}
+
+.space2
+{
+	line-height: 2px;
+	height: 2px;
+	font-family: Arial;
+	font-size: 2px;
+}
+
+.space3
+{
+	line-height: 3px;
+	height: 3px;
+	font-family: Arial;
+	font-size: 3px;
+}
+
+.space4
+{
+	line-height: 4px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 4px;
+	height: 4px;
+}
+
+.space9
+{
+	line-height: 9px;
+	height: 9px;
+	font-family: Arial;
+	font-size: 9px;
+}
+
+.navhome
+{
+	background-color: #78a529;
+	font-family: Tahoma;
+	font-size: 12px;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+
+.navhomeS {
+
+	background-color: #F9F9F9;
+	font-family: Tahoma;
+	font-size: 11px;
+	color: #000000;
+	font-weight: normal;
+}
+
+.navabout
+{
+	font-family: Tahoma;
+	font-size: 11px;
+	font-weight: bold;
+	color: #006699;
+    cursor:pointer;
+}
+
+.navpro
+{
+	background-color: #ea8736;
+	font-family: Tahoma;
+	font-size: 11px;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+
+.navour
+{
+	background-color: #5c85b1;
+	font-family: Tahoma;
+	font-size: 11px;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+
+.top tr td
+{
+    background-color: #FFFFFF;
+}
+
+.top tr td.menu
+{
+    display:none;
+}
+
+.menu tr td
+{
+	background-color: #DAE4F1;
+	font-family: Tahoma;
+	font-size: 11px;
+	font-weight: bold;
+	color: #000000;
+}
+
+.navevents
+{
+	background-color: #b058ab;
+	font-family: Tahoma;
+	font-size: 11px;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+
+.navcontact
+{
+	background-color: #d73c47;
+	font-family: Tahoma;
+	font-size: 11px;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+
+.naveabroad
+{
+	background-color: #da81d5;
+	font-family: Tahoma;
+	font-size: 11px;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+
+.redline4
+{
+	line-height: 4px;
+	background-color: #c40c0a;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 4px;
+}
+
+.lightredline2
+{
+	line-height: 2px;
+	background-color: #d65756;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 2px;
+}
+
+.tintblueline4
+{
+	line-height: 4px;
+	background-color: #436780;
+}
+
+.lighttintblueline2
+{
+	line-height: 2px;
+	background-color: #8e999d;
+}
+
+.bgtintblue
+{
+	background-color: #8e999d;
+	font-family: Tahoma;
+	font-size: 12px;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+
+.bgliteyellow
+{
+	background-color: #fff;
+	font-family: Tahoma;
+	font-size: 14px;
+	font-weight: bold;
+	color: #027AA2;
+	margin-bottom: 1px;
+    text-align:center;
+}
+
+.txtdarkash
+{
+	font-size: 11px;
+	color: #5e5e5e;
+}
+
+.txtdarkash a
+{
+	font-size: 11px;
+	color: #5e5e5e;
+}
+
+.txtdarkash a:hover
+{
+	font-size: 11px;
+	color: #A3A3A3;
+}
+
+.txtdarkashnormal
+{
+	font-size: 10px;
+	font-weight: normal;
+	color: #5e5e5e;
+	text-decoration: underline;
+}
+
+.bgash
+{
+	background-color: #b1b9bb;
+}
+
+.bgwhite
+{
+	background-color: #427290;
+}
+
+.bgred
+{
+	background-color: #c40c0a;
+}
+
+.bgcream
+{
+	background-color: #e3e7db;
+}
+
+.bgdarkcream
+{
+	background-color: #d0d0d0;
+}
+
+.txtblackjustify
+{
+	font-family: Tahoma;
+	font-size: 11px;
+	color: #000000;
+	text-align: justify;
+
+}
+
+.txtblackbold
+{
+	font-family: Tahoma;
+	font-size: 11px;
+	color: #000000;
+	font-weight: bold;
+}
+
+#txtreadmore
+{
+	font-family: Arial;
+	font-size: 10px;
+	color: #c40c0a;
+}
+
+#txtreadmore a
+{
+	color: #c40c0a;
+	text-decoration: underline;
+}
+
+#txtreadmore a:hover
+{
+	font-family: Arial;
+	font-size: 10px;
+	color: #F75E5E;
+	text-decoration: underline;
+}
+
+.txtlightblue
+{
+	font-family: Tahoma;
+	font-size: 11px;
+	color: #8e999d;
+}
+
+#grapx
+{
+	font-family: Tahoma;
+	font-size: 9px;
+	color: #666666;
+}
+
+#grapx a
+{
+	color: #666666;
+}
+
+#grapx a:hover
+{
+	color: #333333;
+	text-decoration: underline;
+}
+.txtashB {
+	font-family: Tahoma;
+	font-size: 11px;
+	color: #666666;
+	font-weight: bold;
+}
+.txtashN {
+
+	font-family: Tahoma;
+	font-size: 10px;
+	color: #666666;
+	font-weight: normal;
+}
+.txtgreenBold {
+
+	font-family: Tahoma;
+	font-size: 12px;
+	color: #78a529;
+	font-weight: bold;
+}
+.txtredBold {
+
+
+	font-family: Tahoma;
+	font-size: 12px;
+	color: #C40C0A;
+	font-weight: bold;
+}
+.txtgreenBoldsmall {
+
+
+	font-family: Tahoma;
+	font-size: 11px;
+	color: #78a529;
+	font-weight: bold;
+}
+.txtgreen {
+	font-family: Tahoma;
+	font-size: 11px;
+	color: #78a529;
+}
+.bgwhite {
+
+	background-color: #FFFFFF;
+}
+
+.testimonial
+{
+	font-family: Tahoma;
+	font-weight: bold;
+	color: #333333;
+	font-size: 11px;
+}
+
+.testimonial a
+{
+	font-family: Tahoma;
+	font-size: 11px;
+	font-weight: bold;
+	color: #166DBC;
+}
+
+.testimonial a:hover
+{
+	color: #125796;
+}
+
+.txtcontactbold
+{
+	font-family: Tahoma;
+	font-size: 11px;
+	font-weight: bold;
+	color: #333333;
+
+}
+
+.txtcontact
+{
+	font-family: Tahoma;
+	font-size: 10px;
+	color: #999999;
+
+}
+
+.txtcontactname
+{
+	
+    /*border: 1px solid #bfd6ed;*/
+    /*font-family: Verdana, Arial, Helvetica, sans-serif;*/
+    /*font-size: 10px;*/
+    /*font-weight: normal;*/
+    /*color: #000000;*/
+    /*width: 150px; padding-left: 2px;*/
+    /*height:21px;*/
+
+    border: none;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    font-weight: normal;
+    color: #000000;
+    width: 107px;
+    padding-left: 2px;
+    /*background-image: url(../images/formshdw.gif) no-repeat -4px -4px;*/
+
+}
+
+.txtcontactname1
+{
+
+    border: none;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    font-weight: normal;
+    color: #000000;
+    width: 200px;
+    padding-left: 2px;
+    /*background-image: url(../images/formshdw.gif) no-repeat -4px -4px;*/
+
+}
+
+
+.txtfloat
+{
+	font-family: Tahoma;
+	font-size: 11px;
+	color: #333333;
+	text-align: right;
+}
+
+
+.txt10
+{
+	font-family: Tahoma;
+	font-size: 10px;
+	color: #666666;
+}
+
+.txtblack10B
+{
+	font-family: Tahoma;
+	font-size: 12px;
+	font-weight: bold;
+	color: #000000;
+}
+/*This is for webwork*/
+.checkboxLabel
+{
+	font-family: Tahoma;
+	font-size: 10px;
+	font-weight: bold;
+	color: #000000;
+}
+
+.txtblack10BRed
+{
+	font-family: Tahoma;
+	font-size: 14px;
+	/*font-weight: bold;*/
+	color: red;
+}
+
+.txtblack10BBlue
+{
+	font-family: Tahoma;
+	font-size: 10px;
+	font-weight: bold;
+	color: cornflowerblue;
+}
+
+.sublinks
+{
+	font-family: Tahoma;
+	font-size: 12px;
+	font-weight: bold;
+	color: #666666;
+}
+
+.sublinks a
+{
+	color: #333333;
+	text-decoration: underline;
+
+}
+
+.sublinks a:hover
+{
+	color: #333333;
+	text-decoration: underline;
+
+}
+
+#dothight
+{
+	height:6px;
+	vertical-align: middle;
+}
+.bodytext {
+	font-family: Tahoma;
+	font-size: 11px;
+	color: #000000;
+	font-weight: normal;
+}
+.bgtintblue2 {
+	font-family: Tahoma;
+	font-size: 12px;
+	color: #666666;
+	font-weight: bold;
+	background-color: #E9E9E9;
+}
+.bgtintblue3 {
+
+	font-family: Tahoma;
+	font-size: 12px;
+	color: #000000;
+	font-weight: bold;
+	background-color: #8FB5D3;
+}
+
+.hidable
+{
+}
+
+.btn {
+    display: none;    
+}
+
+.noprint {
+    display: none;
+}

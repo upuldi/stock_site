@@ -1,0 +1,414 @@
+<html>
+<head>
+    <meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+    <meta name='viewport' content='width=device-width'/>
+    <meta name='format-detection' content='telephone=no'/>
+
+    <link rel="stylesheet" href="scripts/jquery.mobile-1.0.min.css"/>
+    <script src="scripts/jquery-1.6.4.min.js"></script>
+    <script src="scripts/jquery.mobile-1.0.min.js"></script>
+    <script src="scripts/mcScripts.js"></script>
+    <link rel='stylesheet' type='text/css' href='common/soa-mobile.css'/>
+    <style type="text/css">@import "scripts/jquery.themes.css";</style>
+    <script type="text/javascript" src="scripts/jquery.themes.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#spinner1').bind("ajaxSend",
+                    function () {
+                        $(this).show();
+                    }).bind("ajaxComplete", function () {
+                        $(this).hide();
+                    });
+             loadRunDetails();
+             setTimeout('populateTanks()',500);       
+           
+        });
+
+
+    </script>
+    <style type="text/css">
+            /*            .ui-btn-up-c {
+                            
+                            background-color: #659EC7;
+                        }*/
+        .newskin, .ui-icon-shadow {
+            background: '';
+
+        }
+
+        .newskin, .ui-btn-up-c, .ui-icon-shadow {
+            color: #3F5772;
+            background-image: "";
+            background-color: #659EC7;
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(50%, #659EC7), color-stop(50%, #659EC7)); /* Chrome,Safari4+ */
+
+            /*            -moz-border-radius: 5 em;
+-webkit-border-radius: 5em ;            */
+        }
+    </style>
+</head>
+<body>
+<div>
+    <div data-role="header" data-position="inline">
+        <h1><span class="ui-btn-left"><img id="spinner" src="images/hess.png" /> Detail Run Ticket</span><span></span>
+            <span id="username" class="ui-username-right"></span><span class="column-space">&nbsp; </span><span
+                    id="userRoad" class="ui-userRoad-right"></span></h1>
+        <a id="syncBtn" onclick="callSave();" class="ui-syncbtn-right">Save</a>
+        <a  class="ui-print-right"  >Print</a>
+        <a onclick="logOut();" class="ui-btn-right">Logout</a>
+    </div>
+
+    <div data-role="content">
+
+
+        <div id="woDiv">
+
+
+            <div class="ui-column-header-c">
+                <span class="column-loperator"><label for="operator">Operator:</label></span>
+                <span class="column-operator"><input readonly type="text" name="operator" id="operator" value=""/></span>
+                <span class="column-midlabel"> <label for="tickNo">Ticket No:</label></span>
+                <span class="column-ticket"> <input readonly type="text" name="tickNo" id="tickNo" value=""/></span>
+
+
+            </div>
+            <div class="ui-column-header-c">
+                <span class="column-llease"><label for="lName">Lease Name:</label></span>
+                <span class="column-lease"><input readonly type="text" name="lName" id="lName" value=""/></span>
+                <span class="column-lcounty"><label for="county">County :</label></span>
+                <span class="column-county"> <input readonly type="text" name="county" id="county" value=""/></span>
+                <span class="column-lstate"> <label for="state">State :</label></span>
+                <span class="column-state"> <input readonly type="text" name="state" id="state" value=""/></span>
+            </div>
+            <div class="ui-column-header-c">
+                <span class="column-llease"><label for="leaseNo">Lease No:</label></span>
+                <span class="column-lease"><input readonly type="text" name="leaseNo" id="leaseNo" value=""/></span>
+
+                <span class="column-midlabel"> <label for="federalNo">Federal No:</label></span>
+                <span class="column-fedNo"> <input readonly type="text" name="federalNo" id="federalNo" value=""/></span>
+            </div>
+            <div class="ui-column-header-c">
+                <span class="column-ldate"><label for="date">Date:</label></span>
+                <span class="column-date"><input readonly type="text" name="date" id="date" value=""/></span>
+                        <span class="column-tankNo"> 
+                            <!--                            <label  for="tankNo">Tank No:</label>-->
+
+                        <select id="tankNo" name="tankNo" data-theme="c" class="newskin">
+                                  <option value="0">Tank No</option> 
+                        </select></span>
+
+                <!--                        <span class="column-tankNo"> <input  type="text" name="tankNo" id="tankNo" value=""  /></span>-->
+                <span class="column-midlabel"> <label for="tankSize">Tank Size:</label></span>
+                <span class="column-tankSize"> <input readonly type="text" name="tankSize" id="tankSize" value=""/></span>
+
+            </div>
+            <div class="ui-column-header-c">
+                <span class="column-llocation"><label for="date">Location:</label></span>
+                <span class="column-location"><input readonly type="text" name="location" id="location" value=""/></span>
+
+            </div>
+            <div class="ui-column-header-c">
+                <span class="column-lfeet"><label for="feet1">Feet:</label></span>
+                <span class="column-feet"><input type="text" name="feet1" id="feet1" value=""/></span>
+                <span class="column-midlabel"> <label for="inche1">Inches:</label></span>
+                <span class="column-inch"> <input type="text" name="inche1" id="inche1" value=""/></span>
+                <span class="column-midlabel"> <label for="qurtInch">1/4 In:</label></span>
+                <span class="column-qurtInch"> <input type="text" name="qurtInch" id="qurtInch" value=""/></span>
+
+                <span class="column-ltemp"> <label for="temp">Temp:</label></span>
+                <span class="column-feet"> <input type="text" name="temp" id="temp" value=""/></span>
+                <span class="column-offLoad"> <label for="meterRd">Off Load Meter Reading 1:</label></span>
+                <span class="column-meterrd"> <input type="text" name="meterRd" id="meterRd" value=""/></span>
+
+            </div>
+            <div class="ui-column-header-c">
+                <span class="column-lfeet"><label for="feet2">Feet:</label></span>
+                <span class="column-feet"><input type="text" name="feet2" id="feet2" value=""/></span>
+                <span class="column-midlabel"> <label for="inche2">Inches:</label></span>
+                <span class="column-inch"> <input type="text" name="inche2" id="inche2" value=""/></span>
+                <span class="column-midlabel"> <label for="qurtInch2">1/4 In:</label></span>
+                <span class="column-qurtInch"> <input type="text" name="qurtInch2" id="qurtInch2" value=""/></span>
+
+                <span class="column-ltemp"> <label for="temp2">Temp:</label></span>
+                <span class="column-feet"> <input type="text" name="temp2" id="temp2" value=""/></span>
+                <span class="column-offLoad"> <label for="offmeterRd2">Off Load Meter Reading 2:</label></span>
+                 <span class="column-meterrd"> <input type="text" name="offmeterRd2" id="offmeterRd2" /></span>
+
+            </div>
+            <div class="ui-column-header-c">
+               <span class="column-lfeet"><label for="barrel">Gross Barrels:</label></span>
+                <span class="column-feet"><input type="text" name="barrel" id="barrel" value=""/></span>
+                <span class="column-midlabel"> </span>
+                <span class="column-inch"> </span>
+                <span class="column-midlabel"> </span>
+                <span class="column-qurtInch"></span>
+
+                <span class="column-ltemp"></span>
+                <span class="column-feet"></span>
+                <span class="column-offLoad"> <label for="calMeter">Total:</label></span>
+                 <span class="column-meterrd"> <input type="text" name="calMeter" id="calMeter" /></span>
+
+            </div>
+            <div class="ui-column-header-c">
+<!--                <span class="column-midlabel"><label for="barrel">Gross Barrels:</label></span>
+                <span class="column-barrel"><input type="text" name="barrel" id="barrel" value=""/></span>-->
+                <span class="column-longlabel"><label for="oGty">Observed Gty & Temp:</label></span>
+                <span class="column-oQty"><input type="text" name="oGty" id="oGty" value=""/></span>
+                <span class="column-midlabel"><label for="sAndW">S & W :</label></span>
+                <span class="column-sAndW"> <input type="text" name="sAndW" id="sAndW" value=""/></span>
+                <span class="column-longlabel"> <label for="oTruckBy">Oil Trucked by:</label></span>
+                <span class="column-truckedby"> <input type="text" readonly name="oTruckBy" id="oTruckBy" value=""/></span>
+            </div>
+            <div class="ui-column-header-c">
+                <span class="column-longlabel"><label for="toTruck">Oil Trucked to:</label></span>
+                <span class="column-oQty"><input type="text" name="toTruck" id="toTruck" value=""/></span>
+                <span class="column-midlabel"> <label for="truckNo">Truck No:</label></span>
+                <span class="column-sAndW"> <input type="text" name="truckNo" id="truckNo" value=""/></span>
+                <span class="column-midlabel"> <label for="trailerNo">Trailer No:</label></span>
+                <span class="column-feet"> <input type="text" name="trailerNo" id="trailerNo" value=""/></span>
+
+            </div>
+            <div class="ui-column-header-c">
+                <span class="column-midlabel"><label for="driver1">Turned On:</label></span>
+                <span class="column-ldriver"><label for="driver1">Driver:</label></span>
+                <span class="column-driver"><input readonly type="text" name="driver1" id="driver1" value=""/></span>
+                <span class="column-ldate"> <label for="time1">Date(MM-dd-yyyy):</label></span>
+                <span class="column-date"> <input type= "text" name="time1" id="time1" /></span>
+                <span class="column-lseal"> <label for="offSeal1">On seal:</label></span>
+                <span class="column-feet"> <input type="text" name="offSeal1" id="offSeal1" value=""/></span>
+
+            </div>
+            <div class="ui-column-header-c">
+                <span class="column-midlabel"><label for="driver2">Shut Off:</label></span>
+                <span class="column-ldriver"><label for="driver2">Driver:</label></span>
+                <span class="column-driver"><input type="text" name="driver2" id="driver2" value=""/></span>
+                <span class="column-ldate"> <label for="shutTime">Date(MM-dd-yyyy):</label></span>
+                <span class="column-date"> <input type= "text" name="shutDate" id="shutDate" /></span>
+                <span class="column-ltime"> <label for="shutTime">Time(HH:mm):</label></span>
+                <span class="column-feet"> <input type= "text" name="shutTime" id="shutTime" /></span>
+               
+                <span class="column-lseal"> <label for="offSeal2">Off seal:</label></span>
+                <span class="column-feet"> <input type="text" name="offSeal2" id="offSeal2" value=""/></span>
+                <span class="column-feet"> <input type="hidden" name="id" id="id" value=""/></span>
+                <span class="column-feet"> <input type="hidden" name="shipmentId" id="shipmentId" value=""/></span>
+                <span class="column-feet"> <input type="hidden" name="tankId" id="tankId" value=""/></span>
+                <span class="column-feet"> <input type="hidden" name="truckByDriverId" id="truckByDriverId" value=""/></span>
+             </div>
+            <div class="ui-column-header-c">
+                <span class="column-midlabel"><label for="noUnitsType">No of Units:</label></span>
+                <span class="column-noUnits"><input type="text" name="noUnitsType" id="noUnitsType" value=""/></span>
+               
+                <span class="column-midlabel"><label for="noUnitsType">HMX:</label></span>
+                 <span class="column-hmx"><input type="text" name="hmx" id="hmx" value=""/></span>
+                 <span class="column-midlabel"><label for="hazmatInfo">Hazard Class:</label></span>
+                <span class="column-hazmatInfo"><input type="text" name="hazmatInfo" id="hazmatInfo" value=""/></span>
+<!--                <span class="column-midlabel"><label for="grossBarrels">Gross Barrels:</label></span>
+                <span class="column-grossBarrels"><input type="text" name="grossBarrels" id="grossBarrels" value=""/></span>-->
+            </div>
+            <div class="ui-column-header-c">
+              <span class="column-midlabel"><label for="remarks">Remarks:</label></span>
+                <span class="column-remarks"><input type="text" name="remarks" id="remarks" value=""/></span>
+            </div>
+            <div id="carDetaillist" class="match-list">
+                <ul id="jobtbl" data-divider-theme="c" data-theme="c" data-inset="true" data-role="listview">
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var tankidtoselct ;
+
+//    function unloadInvTab() {
+//        $(location).attr('href', 'runTicket.html');
+//    }
+
+    function loadRunDetails() {
+        var paraval = getParameterByName('id');
+        // alert(paraval);
+        //runTicketSupport%21getRunTicketByNumber.action?runTicketId=1111111
+        var url="";
+        $.ajax({
+            url:'runTicketSupport!getRunTicketByNumber.action?runTicketId=' + paraval,
+            cache:false,
+            success:function (data) {
+                $.each(data.list, function (i, line) {
+                    //   alert('gauge feet'+ line.runTicketId +'-'+line.leaseName+line.truckByDriverId+'-'+line.ticketNo+'-'+line.trailerNo);
+                    //alert(line.offLoadMeterReading2);
+                    
+                    $("#date").val(line.planedShiDate);
+                    $('#truckByDriverId').val(line.truckByDriverId);
+                    $('#tickNo').val(line.runTicketId);
+                    $('#truckNo').val(line.truckNo);
+                    $('#trailerNo').val(line.trailerNo);
+                    $('#leaseNo').val(line.leaseNo);
+                    $('#lName').val(line.leaseName);
+                    $('#operator').val(line.operatorName);
+                    $('#id').val(line.id);
+                    $('#shipmentId').val(line.shipmentId);
+                    $("#temp").val(line.gauge1Temp);
+                    $("#temp2").val(line.gauge2Temp);
+                    $("#feet1").val(line.gauge1Feet);
+                    $("#feet2").val(line.gauge2Feet);
+                    $("#inche1").val(line.gauge1Inch);
+                    $("#inche2").val(line.gauge2Inch);
+                    $("#qurtInch").val(line.gauge1Inch);
+                    $("#qurtInch2").val(line.gauge2Inch);                    
+                    $("#meterRd").val(line.offLoadMeterReading);
+                    $("#sAndW").val(line.bsW);
+                    $("#barrel").val(line.grossBarrels);
+                    $("#oGty").val(line.obseverdGty);                    
+                    $("#oTruckBy").val(line.truckByDriver);
+                    $("#toTruck").val(line.oilTruckTo);                     
+                    $("#time1").val(line.inputDate);                    
+                    $("#shutTime").val(line.shutTime);
+                    $("#shutDate").val(line.inputDate2);
+                    $("#driver1").val(line.truckByDriver);
+                    $("#offSeal1").val(line.onSeal);
+                    $("#offSeal2").val(line.offSeal);
+                    $("#driver2").val(line.shutOffDriverId);
+                    $("#hazmatInfo").val(line.hazmatInfo);
+                    $("#hmx").val(line.hmx);
+                    $("#remarks").val(line.remarks);
+                    $("#noUnitsType").val(line.noUnitsType);
+                    $("#location").val(line.wellLocation);                    
+                    $("#offmeterRd2").val(line.offLoadMeterReading2);
+                   // $("#tankNo").text(line.tankId); 
+                    tankidtoselct= line.tankId;
+                });
+            }
+        });
+              
+    }
+    function getParameterByName(name) {
+//                name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+//                var regexS = "[\\?&]" + name + "=([^&#]*)";
+        name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+        var regexS = "[\\?&]" + name + "=([^&#]*)";
+        var regex = new RegExp(regexS);
+        var results = regex.exec(window.location.search);
+
+        if (results == null)
+            return "";
+        else
+            return results[1];
+    }
+    function logOut() {
+
+        $.getJSON("user/LoginSupport!logoff.action", {},
+                function (data1) {
+                    delCookie("loginCookie");
+                    $(location).attr('href', 'login.html');
+                }
+        );
+    }
+    function checkLogin(login) {
+        if (login == false) {
+            $(location).attr('href', 'login.html');
+            return false;
+        } else {
+            // $.cookie("loginCookie", "true");
+            return true;
+        }
+    }
+    function callSave() {
+
+      
+
+        var runticketInstanceId = $('#id').val() ; // Set the runticket instance id here
+        var shipmentId = $('#shipmentId').val(); // Set the shipment Id here
+        var tankId =  $('#tankNo').val().toString(); // Set Tank Id here
+        var truckByDriverId = $('#truckByDriverId').val().toString() // set truckByDriverId read only
+        
+        var gauge1Temp = $("#temp").val();
+        var gauge2Feet = $("#feet2").val();
+        var gauge2Inch = $("#inche2").val();
+        var gauge2QuarterIn = $("#qurtInch2").val() ;
+        var gauge1QuarterIn = $("#qurtInch").val() ;
+        var gauge2Temp = $("#temp2").val();
+        var grossBarrels = $("#barrel").val(); 
+        var obseverdGty = $("#oGty").val();
+        var obseverdTemp = 0;
+        var bsW = $("#sAndW").val().toString();
+       // var truckByDriver = $("#oTruckBy").val().toString();
+        var truckNo = $("#truckNo").val().toString();
+        var trailerNo = $("#trailerNo").val().toString();
+        var turnedOnWitnessSign = 0;
+        //var turnedOnDateTime = $("#time1").val().toString();
+        var inputDate = $("#time1").val().toString();
+        var offSeal = $("#offSeal2").val().toString();        
+        var shutOffDriverId = $("#driver2").val().toString();
+        var shutOffWitnessSign = 0;
+        var inputDate2  = $("#shutDate").val().toString();
+        var shutTime  = $("#shutTime").val().toString();
+        var onSeal =  $("#offSeal1").val().toString();
+        var noUnitsType = $("#noUnitsType").val().toString();
+        var remarks = $("#remarks").val().toString();
+        var offLoadMeterReading = $("#meterRd").val().toString();
+        var hmx = $("#hmx").val().toString();
+        var hazmatInfo = $("#hazmatInfo").val().toString();
+        var wellLocation= $("#location").val().toString();
+        var offLoadMeterReading2 = $("#offmeterRd2").val().toString();
+        var oilTruckTo = $("#toTruck").val().toString();
+        //alert($("#offSeal1").val().toString());
+        var url = "runTicketSupport!saveRunticket.action?id=" + runticketInstanceId + "&shipmentId=" + shipmentId +
+                "&runTicketId=" + $("#tickNo").val() + "&tankId=" + tankId + "&gauge1Feet=" + $("#feet1").val() +
+                "&gauge1Inch=" + $("#inche1").val() + "&gauge1QuarterIn=" + gauge1QuarterIn + "&gauge1Temp=" + gauge1Temp +
+                "&gauge2Feet=" + gauge2Feet + "&gauge2Inch=" + gauge2Inch + "&gauge2QuarterIn=" + gauge2QuarterIn + "&gauge2Temp=" + gauge2Temp +
+                "&grossBarrels=" + grossBarrels + "&obseverdGty=" + obseverdGty + "&obseverdTemp=" + obseverdTemp + "&bsW=" + bsW +
+                 "&truckByDriverId=" + truckByDriverId + "&truckNo=" + truckNo + "&trailerNo=" + trailerNo + "&turnedOnWitnessSign" + turnedOnWitnessSign +
+                 "&offSeal=" + offSeal + "&shutOffDriverId=" + shutOffDriverId + "&shutOffWitnessSign=" + shutOffWitnessSign  +
+                "&onSeal=" + onSeal + "&noUnitsType=" + noUnitsType + "&hmx=" + hmx + "&hazmatInfo=" + hazmatInfo +
+                "&wellLocation=" + wellLocation + "&remarks=" + remarks + "&offLoadMeterReading=" + offLoadMeterReading + "&inputDate=" + inputDate + "&shutTime=" + shutTime + "&inputDate2=" + inputDate2 +
+                "&offLoadMeterReading2=" + offLoadMeterReading2 + "&oilTruckTo=" + oilTruckTo;
+       
+        $.post(url,
+                function () {
+                     $(location).attr('href', 'runTicket.html');
+                }
+        );
+    }
+    
+     function populateTanks() {
+            $.post( "commonLookupSupport!lookupDynamicValues.action", { lookupType: 'findLookups_tank_volume'} ,
+                function( data ) { 
+                    document.getElementById("tankNo").options.length = 1;
+                    $.each( data.list, function(i, line){                        
+                        rendertnks(line);
+                    });                        
+                    $('#tankNo').val(tankidtoselct);
+                    var event = jQuery.Event("change");
+                    $("#tankNo").trigger(event);
+                }
+            );            
+            }
+
+            function rendertnks(row) {        
+                var combo = document.getElementById("tankNo");
+                var option = document.createElement("option");
+                option.text = row.key;
+                option.value = row.value;                
+                try {
+                    combo.add(option, null);
+                }catch(error) {
+                    combo.add(option); // IE only
+                }
+                return false;
+            }
+        
+        $('#tankNo').change(function() {
+            var tsize ;
+            tsize = $('#tankNo option:selected').val();
+            $('#tankSize').val(tsize);
+        });
+        $('#offmeterRd2').change(function() {
+            var read2 = $('#offmeterRd2').val();
+            var read1 = $('#meterRd').val();
+            var tread = read2- read1 ;
+            $('#calMeter').val(tread); 
+        });
+</script>
+
+</body>
+</html>

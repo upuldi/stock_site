@@ -1,0 +1,35 @@
+/*
+Name: jQuery Simple Drop Down Plugin Optimized Stylesheet
+Author: Etienne Fardet
+Version: 1.3
+*/
+/*@charset "utf-8";*/
+body {font-family:Verdana, Geneva, sans-serif; font-size:14px;width:60%;margin:0 auto;}
+a {text-decoration:none;color:#039;}
+h3 {clear:both;color: #039;}
+pre {border:1px solid black; padding:8px;width:auto; height:250px; margin:20px;overflow:auto;}
+strong {color: #093;}
+.requirements {list-style:square;}
+.author {color: #003;font-size: 12px;font-weight: bold;font-style: italic;}
+.TopLeft, .TopRight, .BottomLeft, .BottomRight {width:6px;height:6px;position:absolute;}
+.TopLeft {background:url(../img/top-left.png) no-repeat;}
+.TopRight {background:url(../img/top-right.png) no-repeat;}
+.BottomLeft {background:url(../img/bottom-left.png) no-repeat;}
+.BottomRight {background:url(../img/bottom-right.png) no-repeat;}
+.TopMiddle, .BottomMiddle {width:154px;height:6px;background:url(../img/middle-horizontal.png) repeat-x;position:absolute;left:6px;}
+.VerticalLeft, .VerticalRight {width:6px;height:27px;display:block;background:url(../img/middle-vertical.png) repeat-y;position:absolute;top:6px;}
+.TopRight, .VerticalRight, .BottomRight {left:160px;}
+.Middle {background:#000;position:absolute;left:6px;top:6px;width:154px;height:27px;}
+.BottomLeftSelected {background:url(../img/bottom-left-selected.png) no-repeat;}
+.BottomMiddleSelected  {background:url(../img/middle-horizontal-selected.png) repeat-x !important;}
+.BottomRightSelected {background:url(../img/bottom-right-selected.png) no-repeat;}
+#dropdown1, #dropdown2, #dropdown3 {position:relative;background:transparent;width:166px;margin:0;padding:0;height:50px;}
+#dropdown1 {z-index:2;float:left;clear:both;}
+#dropdown2 {z-index:1;float:left;clear:both;}
+#dropdown3 {z-index:0;float:left;margin-left:30px;}
+.dropdown {position:absolute;list-style-type:none;display:block;margin:0;padding:0;background:url(../img/arrow.png) no-repeat 150px 14px;color:#fff;cursor:pointer;}
+.drop ul {width:166px;list-style-type:none;margin:0;padding:0;background:#000;}
+.drop ul li {display:none;padding:0;margin:0;background:#000;}
+.drop ul li a:hover {background-color:#06f;}
+.selected {width:150px;padding:11px 8px 5px 8px;color:#fff;}
+.dropdown ul li a {width:150px;text-decoration:none;color:#fff;display:block;margin:0;padding:8px;}

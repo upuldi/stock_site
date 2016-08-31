@@ -1,0 +1,387 @@
+    <link rel="stylesheet" href="pages/html5/amcharts/style.css"
+          type="text/css">
+    <script src="pages/html5/amcharts/amstock.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    AmCharts.ready(function () {
+        getAjaxChartData();
+    });
+
+    var chartData1 = [];
+    var chartData2 = [];
+    var chartData3 = [];
+    var chartData4 = [];
+
+    var json_chartDataAJAX_ASI;
+    var json_chartDataAJAX_MPI;
+    var json_chartDataAJAX_SNP20;
+
+    var json_chartDataAJAX_BFI;
+    var json_chartDataAJAX_BFT;
+    var json_chartDataAJAX_CNP;
+    var json_chartDataAJAX_CNE;
+    var json_chartDataAJAX_DIV;
+
+    var json_chartDataAJAX_LNP;
+    var json_chartDataAJAX_MFG;
+    var json_chartDataAJAX_MTR;
+    var json_chartDataAJAX_PLT;
+    var json_chartDataAJAX_PNE;
+
+    var json_chartDataAJAX_SRV;
+    var json_chartDataAJAX_SNS;
+    var json_chartDataAJAX_TLE;
+    var json_chartDataAJAX_INV;
+    var json_chartDataAJAX_TRD;
+
+    var json_chartDataAJAX_FNT = [];
+    var json_chartDataAJAX_HLT = [];
+    var json_chartDataAJAX_HNT = [];
+    var json_chartDataAJAX_INV = [];
+    var json_chartDataAJAX_IT = [];
+
+
+    var chartDataAJAX_ASI = [];
+    var chartDataAJAX_MPI = [];
+    var chartDataAJAX_SNP = [];
+
+    var chartDataAJAX_BFI = [];
+    var chartDataAJAX_BFT = [];
+    var chartDataAJAX_CNP = [];
+    var chartDataAJAX_CNE = [];
+    var chartDataAJAX_DIV = [];
+
+    var chartDataAJAX_FNT = [];
+    var chartDataAJAX_HLT = [];
+    var chartDataAJAX_HNT = [];
+    var chartDataAJAX_INV = [];
+    var chartDataAJAX_IT = [];
+
+    var chartDataAJAX_LNP = [];
+    var chartDataAJAX_MFG = [];
+    var chartDataAJAX_MTR = [];
+    var chartDataAJAX_PLT = [];
+    var chartDataAJAX_PNE = [];
+
+    var chartDataAJAX_SRV = [];
+    var chartDataAJAX_SNS = [];
+    var chartDataAJAX_TLE = [];
+    var chartDataAJAX_INV = [];
+    var chartDataAJAX_TRD = [];
+
+    function HttpXMLObjClass () {
+        this.xmlHttpInstance = getXMLHttpObj();
+    }
+    function getXMLHttpObj() {
+        var xmlHttpInstance;
+        try {
+            xmlHttpInstance = new XMLHttpRequest();
+        }
+        catch (e) {
+            try {
+                xmlHttpInstance = new ActiveXObject("Msxml2.XMLHTTP");
+            }
+            catch (e) {
+                try {
+                    xmlHttpInstance = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                catch (e) {
+                    alert("No AJAX!?");
+                    return false;
+                }
+            }
+        }
+        return xmlHttpInstance;
+    }
+
+    function getXMLHttpObjMPI() {
+        var xmlHttpInstance;
+        try {
+            xmlHttpInstance = new XMLHttpRequest();
+        }
+        catch (e) {
+            try {
+                xmlHttpInstance = new ActiveXObject("Msxml2.XMLHTTP");
+            }
+            catch (e) {
+                try {
+                    xmlHttpInstance = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                catch (e) {
+                    alert("No AJAX!?");
+                    return false;
+                }
+            }
+        }
+        return xmlHttpInstance;
+    }
+
+    function createMainChart() {
+//        var classObj = new HttpXMLObjClass();
+//        var xmlHttpMain = classObj.xmlHttpInstance;
+        var xmlHttpMain = getXMLHttpObj();
+        xmlHttpMain.onreadystatechange = function () {
+            if (xmlHttpMain.readyState == 4) {
+                var ajaxResponse = xmlHttpMain.responseText;
+                var responseObjK = JSON.parse(ajaxResponse);
+                json_chartDataAJAX_ASI = responseObjK.ASIdateList;
+                console.log("Start Creating Stock Chart ");
+                createStockChart();
+            }
+        }
+        var url = "fetchChartDataAJAXHtml5ChartData.action";
+        xmlHttpMain.open("GET", url, true);
+        xmlHttpMain.send(null);
+    }
+
+    function getMPIDataFromServer() {
+
+/*        var classObj = new HttpXMLObjClass();
+        var xmlHttpMPI = classObj.xmlHttpInstance;*/
+        var xmlHttpMPI = getXMLHttpObjMPI();
+        xmlHttpMPI.onreadystatechange = function () {
+            if (xmlHttpMPI.readyState == 4) {
+                var ajaxResponse = xmlHttpMPI.responseText;
+                var responseObjK = JSON.parse(ajaxResponse);
+                json_chartDataAJAX_MPI = responseObjK.MPIdateList;
+                getObjectArrayFromJSON(json_chartDataAJAX_MPI, chartDataAJAX_MPI)
+            }
+        }
+        var url = "fetchChartDataAJAXHtml5ChartData.action";
+        xmlHttpMPI.open("GET", url, true);
+        xmlHttpMPI.send(null);
+    }
+
+    function getSNPDataFromServer() {
+
+        var classObj = new HttpXMLObjClass();
+        var xmlHttp = classObj.xmlHttpInstance;
+        xmlHttp.onreadystatechange = function () {
+            if (xmlHttp.readyState == 4) {
+                var ajaxResponse = xmlHttp.responseText;
+                var responseObjK = JSON.parse(ajaxResponse);
+                json_chartDataAJAX_MPI = responseObjK.SNP20dateList;
+                getObjectArrayFromJSON(json_chartDataAJAX_SNP20, chartDataAJAX_SNP)
+            }
+        }
+        var url = "fetchChartDataAJAXHtml5ChartData.action";
+        xmlHttp.open("GET", url, true);
+        xmlHttp.send(null);
+    }
+
+
+    function getAjaxChartData() {
+
+        createMainChart();
+        getMPIDataFromServer();
+        getSNPDataFromServer();
+
+        return true;
+    }
+
+    function getObjectArrayFromJSON(jsonArray, objArray) {
+
+        if (null != jsonArray) {
+            for (var i = 0; i < jsonArray.length; i++) {
+                var singleObj = jsonArray[i];
+                var newDate = new Date(jsonArray[i].date);
+                jsonArray[i]["date"] = newDate;
+            }
+            objArray = jsonArray;
+        } else {
+            console.log("getObjectArrayFromJSON: Null JSON Array Found");
+        }
+        return objArray;
+    }
+
+    function createDataSource(title, json, data) {
+
+        var dataSet1 = new AmCharts.DataSet();
+        if (null != json) {
+            console.log("title " + title + " json array length " + json.length);
+            try {
+                dataSet1.title = title;
+                dataSet1.fieldMappings = [
+                    {
+                        fromField:"value",
+                        toField:"value"
+                    }
+                ];
+                dataSet1.dataProvider = getObjectArrayFromJSON(json, data);
+                dataSet1.categoryField = "date";
+            } catch (e) {
+                console.log("Error occurred in setting data provider " + title, e.toString());
+            }
+        } else {
+            console.log("null json array");
+        }
+        return dataSet1;
+    }
+
+    function createEmptyDataSource(title, data) {
+
+        var dataSet1 = new AmCharts.DataSet();
+            try {
+                dataSet1.title = title;
+                dataSet1.fieldMappings = [
+                    {
+                        fromField:"value",
+                        toField:"value"
+                    }
+                ];
+                dataSet1.dataProvider = data;
+                dataSet1.categoryField = "date";
+            } catch (e) {
+                console.log("Error occurred in setting data provider " + title, e.toString());
+            }
+        return dataSet1;
+    }
+
+    function createStockChart() {
+
+        var chart = new AmCharts.AmStockChart();
+        chart.pathToImages = "pages/html5/amcharts/images/";
+
+        var dataSet1 = createDataSource("All Share Index", json_chartDataAJAX_ASI, chartDataAJAX_ASI);
+
+        var dataSet2 = createEmptyDataSource("MPI Price Index", json_chartDataAJAX_MPI, chartDataAJAX_MPI);
+        var dataSet3 = createEmptyDataSource("SNP20 Index", json_chartDataAJAX_SNP20, chartDataAJAX_SNP);
+        var dataSet4 = createEmptyDataSource("BFI", json_chartDataAJAX_BFI, chartDataAJAX_BFI);
+        var dataSet5 = createEmptyDataSource("BFT", json_chartDataAJAX_BFT, chartDataAJAX_BFT);
+        var dataSet6 = createEmptyDataSource("CNP", json_chartDataAJAX_CNP, chartDataAJAX_CNP);
+        var dataSet7 = createEmptyDataSource("CNE", json_chartDataAJAX_CNE, chartDataAJAX_CNE);
+        var dataSet8 = createEmptyDataSource("DIV", json_chartDataAJAX_DIV, chartDataAJAX_DIV);
+
+        var dataSet9 = createEmptyDataSource("IT",json_chartDataAJAX_IT,chartDataAJAX_IT);
+
+        /*    var dataSet9 = createDataSource("IT",json_chartDataAJAX_IT,chartDataAJAX_IT);
+         var dataSet10 = createDataSource("INV",json_chartDataAJAX_INV,chartDataAJAX_INV);
+         var dataSet11 = createDataSource("HNT",json_chartDataAJAX_HNT,chartDataAJAX_HNT);
+         var dataSet12 = createDataSource("HLT",json_chartDataAJAX_HLT,chartDataAJAX_HLT);
+         var dataSet13 = createDataSource("FNT",json_chartDataAJAX_FNT,chartDataAJAX_FNT);
+
+         var dataSet14 = createDataSource("FNT",json_chartDataAJAX_LNP,chartDataAJAX_LNP);
+         var dataSet15 = createDataSource("MFG",json_chartDataAJAX_MFG,chartDataAJAX_MFG);
+         var dataSet16 = createDataSource("MTR",json_chartDataAJAX_MTR,chartDataAJAX_MTR);
+         var dataSet17 = createDataSource("PLT",json_chartDataAJAX_PLT,chartDataAJAX_PLT);
+         var dataSet18 = createDataSource("PNE",json_chartDataAJAX_PNE,chartDataAJAX_PNE);
+
+         var dataSet19 = createDataSource("SRV",json_chartDataAJAX_SRV,chartDataAJAX_SRV);
+         var dataSet20 = createDataSource("SNS",json_chartDataAJAX_SNS,chartDataAJAX_SNS);
+         var dataSet21 = createDataSource("TLE",json_chartDataAJAX_TLE,chartDataAJAX_TLE);
+         var dataSet22 = createDataSource("TRD",json_chartDataAJAX_TRD,chartDataAJAX_TRD);*/
+
+        chart.dataSets = [dataSet1, dataSet2, dataSet3, dataSet4, dataSet5, dataSet6, dataSet7, dataSet8, dataSet9/*,
+         dataSet10, dataSet11, dataSet12, dataSet13,, dataSet14, dataSet15, dataSet16, dataSet17, dataSet18,
+         , dataSet19, dataSet20, dataSet21, dataSet22*/];
+
+        var stockPanel1 = new AmCharts.StockPanel();
+        stockPanel1.backgroundColor = "F70101";
+        stockPanel1.backgroundAlpha = 0.23;
+        stockPanel1.plotAreaFillAlphas = 1;
+        stockPanel1.plotAreaFillColors = ["#f5f5f5", "#ffffff"];
+        stockPanel1.plotAreaBorderAlpha = 2;
+        stockPanel1.plotAreaBorderColor = "#CCCCCC";
+
+        var graph1 = new AmCharts.StockGraph();
+        graph1.valueField = "value";
+        graph1.type = "smoothedLine";
+        graph1.compareGraphType = "smoothedLine";
+        graph1.comparable = true;
+        graph1.compareField = "value";
+        graph1.lineThickness = 1.35;
+        //  graph1.compareGraphLineThickness = 1.35;
+        stockPanel1.addStockGraph(graph1);
+
+        // create stock legend
+        var stockLegend1 = new AmCharts.StockLegend();
+        stockLegend1.valueTextRegular = " ";
+        stockLegend1.align = "right";
+        stockLegend1.markerType = "circle";
+        stockPanel1.stockLegend = stockLegend1;
+
+        var valueAxis = new AmCharts.ValueAxis();
+        valueAxis.dashLength = 3;
+        valueAxis.labelFrequency = 1;
+        valueAxis.position = "right";
+        valueAxis.inside = false;
+        stockPanel1.addValueAxis(valueAxis);
+
+        stockPanel1.categoryAxis.dashLength = 3;
+
+        var scrollbarSettings = new AmCharts.ChartScrollbarSettings();
+        scrollbarSettings.graph = graph1;
+        scrollbarSettings.updateOnReleaseOnly = true;
+        scrollbarSettings.color = "#000000";
+        scrollbarSettings.selectedGraphFillColor = "#FE0101";
+        scrollbarSettings.selectedGraphFillAlpha = 0.25;
+        chart.chartScrollbarSettings = scrollbarSettings;
+
+        var cursorSettings = new AmCharts.ChartCursorSettings();
+        cursorSettings.valueBalloonsEnabled = true;
+        chart.chartCursorSettings = cursorSettings;
+
+        chart.panels = [stockPanel1];
+
+        var periodSelector = new AmCharts.PeriodSelector();
+        periodSelector.position = "bottom";
+        periodSelector.periods = [
+            {
+                period:"DD",
+                count:5,
+                label:"5 days"
+            },
+            {
+                period:"DD",
+                count:10,
+                label:"10 days"
+            },
+            {
+                period:"MM",
+                selected:true,
+                count:1,
+                label:"1 month"
+            },
+            {
+                period:"MM",
+                selected:true,
+                count:6,
+                label:"6 month"
+            },
+            {
+                period:"YYYY",
+                count:1,
+                label:"1 year"
+            },
+            {
+                period:"YTD",
+                label:"YTD"
+            },
+            {
+                period:"YYYY",
+                count:5,
+                label:"5 year"
+            },
+            {
+                period:"YYYY",
+                count:10,
+                label:"10 year"
+            },
+            {
+                period:"YYYY",
+                count:20,
+                label:"20 year"
+            },
+            {
+                period:"MAX",
+                label:"MAX"
+            }
+        ];
+        chart.periodSelector = periodSelector;
+
+        var dataSetSelector = new AmCharts.DataSetSelector();
+        dataSetSelector.position = "right";
+        chart.dataSetSelector = dataSetSelector;
+
+        chart.write('chartdiv');
+    }
+    </script>

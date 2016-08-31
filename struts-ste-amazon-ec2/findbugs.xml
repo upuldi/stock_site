@@ -1,0 +1,267 @@
+<project name="analyze_asm_util" default="findbugs">
+
+    <!-- findbugs task definition -->
+    <property name="findbugs.home" value="/home/udoluweera/Applications/findbugs/findbugs-2.0.0"/>
+    <property name="pmd.home" value="/home/udoluweera/Applications/pmd/pmd-bin-5.0-alpha"/>
+    <property name="jvmargs" value="-server -Xss1m -Xmx800m -Duser.language=en -Duser.region=EN -Dfindbugs.home=${findbugs.home}"/>
+
+    <tstamp>
+        <format property="TODAY_BUILD" pattern="d-MMMM-yyyy" locale="en,UK"/>
+    </tstamp>
+
+    <!-- Properties and Classoath Settings -->
+    <property name="proj.tomcat.home" value="/home/udoluweera/Servers/production-site/apache-tomcat-5.5.28/"/>
+    <property name="proj.webapp.name" value="struts-site"/>
+    <property name="proj.dist.dir" value="${basedir}/war"/>
+
+    <path id="project.class.path">
+        <pathelement location="war/WEB-INF/classes"/>
+        <fileset dir="war/WEB-INF/lib" includes="**/*.jar"/>
+        <fileset dir="ext-lib" includes="**/*.jar"/>
+    </path>
+
+    <target name="libs" description="Copy libs to WEB-INF/lib">
+        <mkdir dir="war/WEB-INF/lib"/>
+        <!-- Add any additional server libs that need to be copied -->
+    </target>
+
+    <!-- PMD Bugs -->
+    <path id="pmd.classpath">
+        <pathelement location="war/WEB-INF/classes"/>
+        <fileset dir="${pmd.home}/lib/">
+            <include name="*.jar"/>
+        </fileset>
+        <fileset dir="war/WEB-INF/lib" includes="**/*.jar"/>
+        <fileset dir="ext-lib" includes="**/*.jar"/>
+    </path>
+
+    <path id="findbugs.lib">
+        <fileset dir="${findbugs.home}/lib">
+            <include name="findbugs-ant.jar"/>
+        </fileset>
+    </path>
+
+    <taskdef name="findbugs" classname="edu.umd.cs.findbugs.anttask.FindBugsTask">
+        <classpath refid="findbugs.lib"/>
+    </taskdef>
+
+    <taskdef name="computeBugHistory" classname="edu.umd.cs.findbugs.anttask.ComputeBugHistoryTask">
+        <classpath refid="findbugs.lib"/>
+    </taskdef>
+
+    <taskdef name="setBugDatabaseInfo" classname="edu.umd.cs.findbugs.anttask.SetBugDatabaseInfoTask">
+        <classpath refid="findbugs.lib"/>
+    </taskdef>
+
+    <taskdef name="mineBugHistory" classname="edu.umd.cs.findbugs.anttask.MineBugHistoryTask">
+        <classpath refid="findbugs.lib"/>
+    </taskdef>
+
+    <taskdef name="convertXmlToText" classname="edu.umd.cs.findbugs.anttask.ConvertXmlToTextTask">
+        <classpath refid="findbugs.lib"/>
+    </taskdef>
+
+    <taskdef name="filterBugs" classname="edu.umd.cs.findbugs.anttask.FilterBugsTask">
+        <classpath refid="findbugs.lib"/>
+    </taskdef>
+
+    <!-- findbugs task definition -->
+    <target name="findbugs">
+        <antcall target="analyze"/>
+        <antcall target="mine"/>
+    </target>
+
+    <target name="clean" description="Cleans this project">
+        <delete dir="war/WEB-INF/classes" failonerror="false"/>
+        <delete dir="war/chart" failonerror="false"/>
+        <delete dir="${proj.tomcat.home}/webapps/${proj.webapp.name}" failonerror="false"/>
+    </target>
+
+
+    <target name="javac" depends="libs" description="Compile java source">
+        <mkdir dir="war/WEB-INF/classes"/>
+        <javac srcdir="src" includes="**" encoding="utf-8"
+               destdir="war/WEB-INF/classes"
+               source="1.5" target="1.5" nowarn="true"
+               debug="true" debuglevel="lines,vars,source">
+            <classpath refid="project.class.path"/>
+        </javac>
+        <copy todir="war/WEB-INF/classes">
+            <fileset dir="src" excludes="**/*.java"/>
+        </copy>
+    </target>
+
+
+    <!-- analyze task -->
+    <target name="analyze">
+        <!-- run findbugs against asm-util -->
+        <findbugs home="${findbugs.home}"
+                  output="xml:withMessages"
+                  timeout="90000000"
+                  reportLevel="experimental"
+                  workHard="true"
+                  effort="max"
+                  adjustExperimental="true"
+                  jvmargs="${jvmargs}"
+                  failOnError="true"
+                  outputFile="output/out.xml"
+                  projectName="${proj.webapp.name} ${TODAY_BUILD}"
+                  debug="false">
+            <class location="war/WEB-INF/classes"/>
+            <auxClasspath refid="project.class.path"/>
+        </findbugs>
+    </target>
+
+    <target name="pmd">
+        <pmd auxclasspath="war/WEB-INF/classes">
+
+            <ruleset>rulesets/java/basic.xml</ruleset>
+            <ruleset>rulesets/java/clone.xml</ruleset>
+            <ruleset>rulesets/java/codesize.xml</ruleset>
+            <ruleset>rulesets/java/coupling.xml</ruleset>
+            <ruleset>rulesets/java/design.xml</ruleset>
+            <ruleset>rulesets/java/empty.xml</ruleset>
+            <ruleset>rulesets/java/finalizers.xml</ruleset>
+            <ruleset>rulesets/java/imports.xml</ruleset>
+            <ruleset>rulesets/java/javabeans.xml</ruleset>
+
+            <ruleset>rulesets/java/logging-jakarta-commons.xml</ruleset>
+            <ruleset>rulesets/java/logging-java.xml</ruleset>
+            <ruleset>rulesets/java/optimizations.xml</ruleset>
+            <ruleset>rulesets/java/strictexception.xml</ruleset>
+            <ruleset>rulesets/java/strings.xml</ruleset>
+            <ruleset>rulesets/java/sunsecure.xml</ruleset>
+            <ruleset>rulesets/java/typeresolution.xml</ruleset>
+            <ruleset>rulesets/java/unnecessary.xml</ruleset>
+            <ruleset>rulesets/java/unusedcode.xml</ruleset>
+
+            <formatter type="xml" toFile="output/report_pmd.xml"/>
+            <fileset dir="src">
+                <include name="**/*.java"/>
+            </fileset>
+        </pmd>
+        <xslt in="output/report_pmd.xml" style="output/pmd-nicerhtml.xsl" out="output/report_pmd.html"/>
+    </target>
+
+    <target name="mine">
+
+        <!-- Set info to the latest analysis -->
+        <setBugDatabaseInfo home="${findbugs.home}"
+                            withMessages="true"
+                            name="${proj.webapp.name}  ${TODAY_BUILD}"
+                            input="output/out.xml"
+                            output="output/out-rel.xml"/>
+
+        <!-- Checking if history file already exists (out-hist.xml) -->
+        <condition property="mining.historyfile.available">
+            <available file="output/out-hist.xml"/>
+        </condition>
+        <condition property="mining.historyfile.notavailable">
+            <not>
+                <available file="output/out-hist.xml"/>
+            </not>
+        </condition>
+
+        <!-- this target is executed if the history file do not exist (first run) -->
+        <antcall target="history-init">
+            <param name="data.file" value="output/out-rel.xml"/>
+            <param name="hist.file" value="output/out-hist.xml"/>
+        </antcall>
+        <!-- else this one is executed -->
+        <antcall target="history">
+            <param name="data.file" value="output/out-rel.xml"/>
+            <param name="hist.file" value="output/out-hist.xml"/>
+            <param name="hist.summary.file" value="output/out-hist.txt"/>
+        </antcall>
+    </target>
+
+    <!-- Initializing history file -->
+    <target name="history-init" if="mining.historyfile.notavailable">
+        <copy file="${data.file}" tofile="${hist.file}"/>
+
+    </target>
+
+    <!-- Computing bug history -->
+    <target name="history" if="mining.historyfile.available">
+        <!-- Merging ${data.file} into ${hist.file} -->
+        <computeBugHistory home="${findbugs.home}"
+                           withMessages="true"
+                           output="${hist.file}">
+            <dataFile name="${hist.file}"/>
+            <dataFile name="${data.file}"/>
+        </computeBugHistory>
+
+        <!-- Compute history into ${hist.summary.file} -->
+        <mineBugHistory home="${findbugs.home}"
+                        formatDates="true"
+                        noTabs="true"
+                        input="${hist.file}"
+                        output="${hist.summary.file}"/>
+    </target>
+
+    <target name="full-report">
+        <convertXmlToText home="${findbugs.home}" input="output/out.xml" output="output/full-report.html"
+                          format="html:fancy-hist.xsl"/>
+    </target>
+
+    <target name="filter-new-code-bugs">
+        <delete file="output/new-bugs.xml" failonerror="false" />
+        <delete file="output/new-bugs-report.html" failonerror="false" />
+        <filterBugs home="${findbugs.home}" input="output/out-hist.xml" output="output/new-bugs.xml" newcode="true"/>
+    </target>
+
+    <target name="new-code-bugs-report" depends="filter-new-code-bugs">
+
+        <condition property="newcode.bugfile.available">
+            <available file="output/new-bugs.xml"/>
+        </condition>
+        <antcall target="new-code-bugs-report-html"/>
+
+    </target>
+
+    <target name="new-code-bugs-report-html" if="newcode.bugfile.available">
+        <convertXmlToText home="${findbugs.home}" input="output/new-bugs.xml" output="output/new-bugs-report.html" format="html:fancy-hist.xsl"/>
+        <antcall target="MAIL-FINDBUGS-NEWBUGS" />
+    </target>
+
+    <target name="change-code-bugs">
+        <filterBugs home="${findbugs.home}" input="output/out-hist.xml" output="output/new-bugs.xml"
+                    introducedByChange="true"/>
+        <convertXmlToText home="${findbugs.home}" input="output/new-bugs.xml" output="output/change-bugs-report.html"
+                          format="html:fancy-hist.xsl"/>
+    </target>
+
+
+    <taskdef name="pmd" classname="net.sourceforge.pmd.ant.PMDTask" classpathref="pmd.classpath"/>
+
+    <target name="MAIL">
+        <mail files="output/full-report.html" mailhost="smtp.bizmail.yahoo.com"
+              user="sup_shipxpress@shipxpress.com" password="t5r4e3w2q1" subject="Findbugs Report"
+              charset="ISO-8859-1">
+            <from address="sup_shipxpress@shipxpress.com"/>
+            <to address="upul.doluweera@shipxpress.com"/>
+            <attachments>
+                <fileset dir="output">
+                    <include name="full-report.html"/>
+                    <include name="new-bugs-report.html"/>
+                    <include name="report_pmd.html"/>
+                </fileset>
+            </attachments>
+        </mail>
+    </target>
+
+    <target name="MAIL-FINDBUGS-NEWBUGS">
+        <mail files="output/new-bugs-report.html" mailhost="smtp.bizmail.yahoo.com"
+              user="sup_shipxpress@shipxpress.com" password="t5r4e3w2q1" subject="Findbugs Report ${TODAY_BUILD}"
+              charset="ISO-8859-1">
+            <from address="sup_shipxpress@shipxpress.com"/>
+            <to address="upul.doluweera@shipxpress.com"/>
+            <attachments>
+                <fileset dir="output">
+                    <include name="new-bugs-report.html"/>
+                </fileset>
+            </attachments>
+        </mail>
+    </target>
+
+</project>

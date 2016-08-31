@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.domain">
+
+    <class name="ChartData">
+        <id name="id" column="ID"/>
+        <property name="date" column="KEY_VAL"/>
+        <property name="value" column="VALUE"/>
+    </class>
+
+
+    <sql-query name="getAllASI">
+        <return alias="e" class="ChartData"/>
+        <![CDATA[
+            select ID,DATE_FORMAT(str_to_date(day,'%d-%m-%Y'),'%Y-%m-%d') as KEY_VAL, REPLACE(cse_all_share_index, ",", "")  as VALUE
+            from upuldi_CSEDAILYDATA.DAILY_MARKET_SUMMERY
+            where cse_all_share_index is not null order by str_to_date(day,'%d-%m-%Y') asc;
+          ]]>
+    </sql-query>
+
+
+</hibernate-mapping>
